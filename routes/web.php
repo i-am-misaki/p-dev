@@ -18,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/mypage', \App\Http\Controller\Portfolio\MypageController::class)
-// ->name('portfolio.mypage')
+Route::get('/mypage', [\App\Http\Controller\Portfolio\MypageController::class, 'mytop'])
+->name('portfolio.mypage');
 
 
 Route::get('/dashboard', function () {

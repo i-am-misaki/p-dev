@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class MypageController extends Controller
 {
-    //
+    public function mytop(Request $request){
+
+        return view('portfolio.mypage');
+    }
 }
