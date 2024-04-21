@@ -66,9 +66,9 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             //'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'database-2.c5eeu0omytpi.ap-northeast-1.rds.amazonaws.com'),
+            'host' => env('DB_HOST', 'demo-postgres.c5eeu0omytpi.ap-northeast-1.rds.amazonaws.com'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'secondDB'),
+            'database' => env('DB_DATABASE', 'sampleDB'),
             'username' => env('DB_USERNAME', 'postgres'),
             'password' => env('DB_PASSWORD', 'adminadmin'),
             'charset' => 'utf8',
