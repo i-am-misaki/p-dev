@@ -9,6 +9,7 @@ services:
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
+            # - '5173:80'
             - '3000:80'
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         environment:
@@ -32,6 +33,7 @@ services:
             POSTGRES_DB: '${DB_DATABASE}'
             POSTGRES_USER: '${DB_USERNAME}'
             POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+            
         volumes:
             - 'sail-pgsql:/var/lib/postgresql/data'
             - './docker/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
