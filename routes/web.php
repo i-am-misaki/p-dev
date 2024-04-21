@@ -18,7 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mypage', [\App\Http\Controller\Portfolio\MypageController::class, 'mytop'])
+Route::get('/portfolio', App\Http\Controllers\Portfolio\IndexController::class)
+->name('portfolio');
+
+Route::get('/mypage', [\App\Http\Controllers\Portfolio\MypageController::class, 'mytop'])
 ->name('portfolio.mypage');
 
 
