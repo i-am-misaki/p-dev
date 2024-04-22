@@ -19,11 +19,12 @@ Route::get('/', function () {
 });
 
 Route::get('/portfolio', App\Http\Controllers\Portfolio\IndexController::class)
-->name('portfolio');
+    ->name('portfolio');
 
+Route::middleware('auth')->group(function () {
 Route::get('/mypage', [\App\Http\Controllers\Portfolio\MypageController::class, 'mytop'])
-->name('portfolio.mypage');
-
+    ->name('portfolio.mypage');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
