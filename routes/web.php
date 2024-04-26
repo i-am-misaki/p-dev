@@ -18,13 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::middleware('auth')->group(function () {
 Route::get('/portfolio', App\Http\Controllers\Portfolio\IndexController::class)
-    ->name('portfolio');
+->name('portfolio');
+// });
 
-Route::middleware('auth')->group(function () {
-Route::get('/mypage', [\App\Http\Controllers\Portfolio\MypageController::class, 'mytop'])
-    ->name('portfolio.mypage');
-});
+// Route::middleware('auth')->group(function () {
+    // Route::get('/portfolio',\App\Http\Controllers\Portfolio\IndexController::class)
+    // ->middleware('auth')
+    // ->name('portfolio.mypage');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
