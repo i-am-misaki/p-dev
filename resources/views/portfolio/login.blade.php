@@ -1,5 +1,6 @@
 <x-portfolio.base-portfolio>
     <x-portfolio.header_title></x-portfolio.header_title>
+    
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -18,17 +19,17 @@
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
 
                 <div class="flex justify-center">
-                    <x-element.submit_button>
+                    <x-portfolio.submit_button class="display: inline-block px-16">
                         {{ __('ログインする') }}
-                    </x-element.submit_button>
+                    </x-portfolio.submit_button>
                 </div>
             </div>
         </form>
     </div>
     <div class="flex justify-center mb-80">
-        <x-element.button :href=" url('register')" theme='secondary'>
+        <x-portfolio.button :href=" url('register')" theme='secondary'>
             {{ __('新規登録する') }}
-        </x-element.button>
+        </x-portfolio.button>
     </div>
     <x-portfolio.footer></x-portfolio.footer>
 </x-portfolio.base-portfolio>
