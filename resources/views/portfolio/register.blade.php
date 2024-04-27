@@ -20,8 +20,8 @@
                 <input name='password'class="mb-8 border-none outline-none border-5 border-b-indigo-500"></input>
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
                 
-                <div class="text-center">
-                <x-element.submit_button class="ms-4">{{ __('登録') }}</x-element.submit_button>
+                <div class="flex justify-center">
+                    <x-element.submit_button class="">{{ __('登録') }}</x-element.submit_button>
                 </div>
             </div>
        </form>
