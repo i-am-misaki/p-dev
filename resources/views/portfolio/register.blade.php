@@ -21,8 +21,9 @@
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
                 
                 <div class="flex justify-center">
-                    <x-portfolio.submit_button class="display: inline-block px-16">{{ __('登録') }}</x-portfolio.submit_button>
+                    <x-portfolio.submit_button>{{ __('登録') }}</x-portfolio.submit_button>
                 </div>
+                <!-- class="display: inline-block px-16" -->
             </div>
        </form>
     </div>
