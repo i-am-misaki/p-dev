@@ -21,7 +21,7 @@
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
                 
                 <div class="text-center">
-                <x-portfolio.primary-button class="ms-4">{{ __('登録') }}</x-portfolio.primary-button>
+                <x-element.submit_button class="ms-4">{{ __('登録') }}</x-element.submit_button>
                 </div>
             </div>
        </form>
