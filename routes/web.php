@@ -24,10 +24,13 @@ Route::get('/portfolio', App\Http\Controllers\Portfolio\IndexController::class)
 // });
 
 // Route::middleware('auth')->group(function () {
-    // Route::get('/portfolio',\App\Http\Controllers\Portfolio\IndexController::class)
+    // Route::get('/top',\App\Http\Controllers\Portfolio\IndexController::class)
     // ->middleware('auth')
-    // ->name('portfolio.mypage');
+    // ->name('mypage');
 // });
+Route::get('/top', function () {
+    return view('portfolio.mypage');
+})->middleware(['auth', 'verified'])->name('top');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

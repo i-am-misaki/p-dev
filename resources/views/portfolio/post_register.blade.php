@@ -7,19 +7,24 @@
        </div>
        <form action="{{ route('register') }}" method="post">
         @csrf
+        <!-- @if($errors->any())
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        @endif -->
             <div class="flex flex-col justify-center w-96 h-82 mb-80">
                 <label class="border-b">氏名</label>
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 <input name='name' class="mb-8 border-none outline-none border-b border-slate-500"></input>
-
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                
                 <label class="border-b">メールアドレス</label>
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 <input name='email' type="email" class="mb-8 border-none outline-none border-b border-slate-500"></input>
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
                 <label class="border-b">パスワード</label>
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 <input name='password'class="mb-8 border-none outline-none border-5 border-b-indigo-500"></input>
-
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                
                 <div class="text-center">
                 <x-primary-button class="ms-4">{{ __('登録') }}</x-primary-button>
                 </div>
