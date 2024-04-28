@@ -7,21 +7,25 @@
        </div>
        <form action="{{ route('register') }}" method="post">
         @csrf
-            <div class="flex flex-col justify-center w-96 h-82 mb-80">
-                <label class="border-b">氏名</label>
-                <input name='name' class="mb-8 border-none outline-none border-b border-slate-500"></input>
+            <div class="flex flex-col justify-center  w-96 h-82 mb-80">
+                <div class="flex flex-col border-b mt-6">
+                    <label class="text-slate-500 mt-6">氏名</label>
+                    <input name='name' class="border-none outline-none"></input>
+                </div>
                 <x-portfolio.error :messages="$errors->get('name')" class="mt-2" />
-                
-                <label class="border-b">メールアドレス</label>
-                <input name='email' type="email" class="mb-8 border-none outline-none border-b border-slate-500"></input>
+                <div class="flex flex-col border-b mt-6">
+                    <label class="text-slate-500 mt-8">メールアドレス</label>
+                    <input name='email' type="email" class="border-none outline-none "></input>
+                </div>
                 <x-portfolio.error :messages="$errors->get('email')" class="mt-2" />
-
-                <label class="border-b">パスワード</label>
-                <input name='password'class="mb-8 border-none outline-none border-5 border-b-indigo-500"></input>
+                <div class="flex flex-col border-b mt-6">
+                    <label class="text-slate-500 mt-8">パスワード</label>
+                    <input type="password" name='password'class=" border-none outline-none "></input>
+                </div>
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
                 
-                <div class="flex justify-center">
-                    <x-portfolio.submit_button>{{ __('登録') }}</x-portfolio.submit_button>
+                <div class="flex justify-center mt-12">
+                    <x-portfolio.submit_button>{{ __('登録する') }}</x-portfolio.submit_button>
                 </div>
                 <!-- class="display: inline-block px-16" -->
             </div>

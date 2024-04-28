@@ -32,7 +32,7 @@ class RegisterRequest extends FormRequest
     {
         return[
             'name.required' => '氏名は必ず入力してください',
-            'name.max:255' => '氏名は255文字以内で入力してください',
+            'name.max' => '氏名は255文字以内で入力してください',
             'email.required' => 'メールアドレスは必ず入力してください',
             'email.email' => 'メールアドレスが正しい形式ではありません',
             'password.required' => 'パスワードは必ず入力してください',
