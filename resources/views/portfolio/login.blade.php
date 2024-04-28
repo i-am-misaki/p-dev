@@ -8,17 +8,21 @@
            <h2 class="flex justify-center font-normal text-3xl">ログイン</h2>
      
         <form method="POST" action="{{ route('login') }}" class="mt-20 mb-7">
-            @csrf
+        @csrf
+            @include('portfolio.flash-message')
             <div class="flex flex-col justify-center w-96 h-82">
-                <label class="border-b">メールアドレス</label>
-                <input name='email' type="email" class="mb-8 border-none outline-none border-b border-slate-500"></input>
-                <x-portfolio.error :messages="$errors->get('email')" class="mt-2" />
+                <div class="flex flex-col border-b mt-10">
+                    <label class="text-slate-500">メールアドレス</label>
+                    <input name='email' type="email" class="border-none outline-none"></input>
+                </div>
+                
+                <div class="flex flex-col border-b mt-10">
+                    <label class="text-slate-500">パスワード</label>
+                    <input type="password" name='password'class="border-none outline-none"></input>
+                </div>
+                
 
-                <label class="border-b">パスワード</label>
-                <input name='password'class="mb-8 border-none outline-none border-5 border-b-indigo-500"></input>
-                <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
-
-                <div class="flex justify-center">
+                <div class="flex justify-center mt-10">
                     <x-portfolio.submit_button >
                         {{ __('ログインする') }}
                     </x-portfolio.submit_button>
@@ -28,9 +32,10 @@
         </form>
     </div>
     <div class="flex justify-center mb-80">
-        <x-portfolio.button :href=" url('register')" theme='secondary'>
+        <x-element.button-a :href=" url('register')" theme='secondary'>
             {{ __('新規登録する') }}
-        </x-portfolio.button>
+        </x-element.button-a>
     </div>
     <x-portfolio.footer></x-portfolio.footer>
 </x-portfolio.base-portfolio>
+
