@@ -5,19 +5,19 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="flex flex-col items-center mt-8">
-           <h2 class="flex justify-center font-normal text-3xl">ログイン</h2>
+           <h2 class="flex justify-center font-normal font-Roboto text-4xl">ログイン</h2>
      
         <form method="POST" action="{{ route('login') }}" class="mt-20 mb-7">
         @csrf
             @include('portfolio.flash-message')
             <div class="flex flex-col justify-center w-96 h-82">
-                <div class="flex flex-col border-b mt-10">
-                    <label class="text-slate-500">メールアドレス</label>
+                <div class="flex flex-col border-b mt-10 gap-2.5">
+                <x-portfolio.input_label for="name" :value="__('メールアドレス')" />
                     <input name='email' type="email" class="border-none outline-none"></input>
                 </div>
                 
-                <div class="flex flex-col border-b mt-10">
-                    <label class="text-slate-500">パスワード</label>
+                <div class="flex flex-col border-b mt-10 gap-2.5s">
+                    <x-portfolio.input_label for="name" :value="__('パスワード')" />
                     <input type="password" name='password'class="border-none outline-none"></input>
                 </div>
                 
@@ -26,7 +26,6 @@
                     <x-portfolio.submit_button >
                         {{ __('ログインする') }}
                     </x-portfolio.submit_button>
-                    <!-- class="display: inline-block px-16" -->
                 </div>
             </div>
         </form>

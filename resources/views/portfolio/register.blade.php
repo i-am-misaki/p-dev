@@ -3,23 +3,23 @@
     <x-portfolio.header></x-portfolio.header>
     <div class="flex flex-col items-center">
        <div class="my-20">
-           <h2 class="flex justify-center font-normal text-3xl">新規登録</h2>
+           <h2 class="flex justify-center font-normal font-Roboto text-4xl">新規登録</h2>
        </div>
        <form action="{{ route('register') }}" method="post">
         @csrf
             <div class="flex flex-col justify-center  w-96 h-82 mb-80">
-                <div class="flex flex-col border-b mt-6">
-                    <label class="text-slate-500 mt-6">氏名</label>
+                <div class="flex flex-col border-b mt-6 gap-2.5">
+                    <x-portfolio.input_label for="name" :value="__('氏名')" />
                     <input name='name' class="border-none outline-none"></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('name')" class="mt-2" />
-                <div class="flex flex-col border-b mt-6">
-                    <label class="text-slate-500 mt-8">メールアドレス</label>
+                <div class="flex flex-col border-b mt-6 gap-2.5">
+                    <x-portfolio.input_label for="name" :value="__('メールアドレス')" />
                     <input name='email' type="email" class="border-none outline-none "></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('email')" class="mt-2" />
-                <div class="flex flex-col border-b mt-6">
-                    <label class="text-slate-500 mt-8">パスワード</label>
+                <div class="flex flex-col border-b mt-6 gap-2.5">
+                    <x-portfolio.input_label for="name" :value="__('パスワード')" />
                     <input type="password" name='password'class=" border-none outline-none "></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
