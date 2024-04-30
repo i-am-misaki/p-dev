@@ -5,14 +5,17 @@
         @if(Route::has('login'))
         @auth
             <form method="post" action="{{ route('logout') }}">
+                @csrf
                 <x-element.button-a onclick="event.preventDefault(); this.closest('form').submit();">
                     {{__('ログアウト')}}
                 </x-element.button-a>  
             </form>
         @endauth
         @else
-            <x-element.button-a :href="route('login')">ログイン</x-element.button-a>    
+            <x-element.button-a-href :href="route('login')">ログイン</x-element.button-a>    
         @endif
     </div>
 </header>
 @endslot
+
+

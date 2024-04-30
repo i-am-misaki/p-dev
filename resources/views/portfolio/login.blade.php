@@ -33,9 +33,9 @@
         </form>
     </div>
     <div class="flex justify-center mb-80">
-        <x-element.button-a :href=" url('register')" theme='secondary'>
+        <x-element.button-a-href :href=" url('register')" theme='secondary'>
             {{ __('新規登録する') }}
-        </x-element.button-a>
+        </x-element.button-a-href>
     </div>
     <x-portfolio.footer></x-portfolio.footer>
 </x-portfolio.base-portfolio>
