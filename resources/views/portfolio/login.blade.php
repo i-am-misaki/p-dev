@@ -15,15 +15,17 @@
                 <x-portfolio.input_label for="name" :value="__('メールアドレス')" />
                     <input name='email' type="email" class="border-none outline-none"></input>
                 </div>
+                <x-portfolio.error :messages="$errors->get('email')" class="mt-2" />
                 
                 <div class="flex flex-col border-b mt-10 gap-2.5s">
-                    <x-portfolio.input_label for="name" :value="__('パスワード')" />
+                    <x-portfolio.input_label for="password" :value="__('パスワード')" />
                     <input type="password" name='password'class="border-none outline-none"></input>
                 </div>
+                <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
                 
 
                 <div class="flex justify-center mt-10">
-                    <x-portfolio.submit_button >
+                    <x-portfolio.submit_button class="">
                         {{ __('ログインする') }}
                     </x-portfolio.submit_button>
                 </div>

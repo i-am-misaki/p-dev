@@ -14,12 +14,12 @@
                 </div>
                 <x-portfolio.error :messages="$errors->get('name')" class="mt-2" />
                 <div class="flex flex-col border-b mt-6 gap-2.5">
-                    <x-portfolio.input_label for="name" :value="__('メールアドレス')" />
+                    <x-portfolio.input_label for="email" :value="__('メールアドレス')" />
                     <input name='email' type="email" class="border-none outline-none "></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('email')" class="mt-2" />
                 <div class="flex flex-col border-b mt-6 gap-2.5">
-                    <x-portfolio.input_label for="name" :value="__('パスワード')" />
+                    <x-portfolio.input_label for="password" :value="__('パスワード')" />
                     <input type="password" name='password'class=" border-none outline-none "></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
