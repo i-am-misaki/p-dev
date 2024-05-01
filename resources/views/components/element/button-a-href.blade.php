@@ -7,7 +7,7 @@
         function getThemeClassForButtonA($theme){
                 return match ($theme){
                         'primary' => 'bg-white font-Roboto font-normal leading-5 text-lg px-9 py-2 rounded',
-                        'secondary' => 'inline-block bg-cyan-800 text-white font-Roboto font-normal text-lg px-20 py-3.5 rounded',
+                        'secondary' => 'bg-cyan-800 text-white font-Roboto font-normal text-lg px-20 py-3.5 rounded',
                         'default' => '',
                 };
         }
