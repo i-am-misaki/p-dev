@@ -15,7 +15,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="relative font-sans text-gray-900">
+    <body class="font-sans text-gray-900">
         {{ $header }}
         <div class="flex justify-center items-center">
             <div class="w-full dark:bg-gray-800">
