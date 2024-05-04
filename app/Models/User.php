@@ -26,6 +26,16 @@ class User extends Authenticatable
         'image'
     ];
 
+    // 対象とするテーブル名を指定
+    protected $table = 'users';
+
+    // テーブルのすべてのデータを取得
+    public function getData()
+    {
+        $data - DB::table($this->table)->get();
+        return $data;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

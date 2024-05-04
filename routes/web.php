@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,17 +29,25 @@ Route::get('/portfolio', App\Http\Controllers\Portfolio\IndexController::class)
     // ->middleware('auth')
     // ->name('mypage');
 // });
-Route::get('/top', function () {
-    return view('portfolio.mypage');
-})->middleware(['auth', 'verified'])->name('top');
+// Route::get('/top', function () {
+//     $users = User::all();
+//     return view('portfolio.mypage')
+//     ->with('users', $users);
+// })->middleware(['auth', 'verified'])->name('top');
+
+Route::get('/top', App\Http\Controllers\Portfolio\TopController::class)
+    ->middleware(['auth', 'verified'])
+    ->name('top');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('mypage.edit');
+    // Route::patch('/mypage-edit', [ProfileController::class, 'update'])->name('mypage.update');
+    Route::post('/mypage/edit', [ProfileController::class, 'update'])->name('mypage.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

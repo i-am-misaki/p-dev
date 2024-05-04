@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -16,25 +19,53 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        $id = Auth::id();
+        $data = User::where('id', $id)->get();
+
+        return view('portfolio.mypage-edit', [
             'user' => $request->user(),
+            'data' => $data,
         ]);
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request) //: RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $request->validate([
+            'introduction' => ['required', 'string', 'max:200', 'min:50'] ,
+            
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        // $request->user()->fill($request->validated());
 
-        $request->user()->save();
+        // if ($request->user()->isDirty('email')) {
+        //     $request->user()->email_verified_at = null;
+        // }
+        // $request->user()->save();
+       
+            try{
+                $data = Auth::user();
+                $data->content = $request->input('introduction');
+                $data->save();
+                // *****ok↑
+                
+                // Storage::putFile('public/images', $data->image);
+                // $data->image->save();
+                $dir = 'public/images';
+                $file_name = $request->file('myimage')->getClientOriginalName();
+                $data->image = $dir . '/' . $file_name;
+                dd($data->image);
+                // $data->save();
+                
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+            } catch (Exception $e){
+                return back()->with('msg_error', '編集できませんでした');
+            };
+
+            return Redirect::route('top')
+                ->with('data', $data); 
     }
 
     /**

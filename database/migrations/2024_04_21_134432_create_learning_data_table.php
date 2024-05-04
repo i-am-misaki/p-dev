@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('learning_data', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->int('study_hour');
+            $table->integer('studyhour');
             $table->date('month');
-            $table->int('category_id');
-            $table->int('user_id');
+            $table->integer('category_id');
+            $table->integer('user_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

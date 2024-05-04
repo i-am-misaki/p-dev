@@ -8,15 +8,22 @@
                     <h4 class="text-normal font-Roboto text-xl text-center">アカデミー花子</h4>
                 </div> -->
             <div class="m-auto">
-                <span class=" block border border-gray-300 p-32 bg-gray-300 rounded-full"></span>
+                @foreach( $data as $userData)
+                    
+                <img src="{{ asset($userData->image) }}" class=""/>
+                        <!-- <span class=" block border border-gray-300 p-32 bg-gray-300 rounded-full"></span> -->
+              
                 <h4 class="text-normal font-Roboto text-xl text-center mt-6">{{ Auth::user()->name }}</h4>
             </div>
             
-            <div id="content" class="w-1/2 gap-4 justify-center flex flex-col">
-                <h2 class="align-middle w-36 font-Roboto text-4xl font-bold">自己紹介</h2>
+            <div id="content" class="w-1/2 gap-4 justify-center flex flex-col"> 
+                <h2 name="content" class="align-middle w-36 font-Roboto text-4xl font-bold">自己紹介</h2>
                 <span class="border-b-2 w-64"></span>
-                <p class="align-middle gap-4 font-Roboto font-normal text-lg">自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。</p>
-                <x-element.a-href theme='secondary' class="w-64 h-14 py-4 px-8 text-center font-normal text-base">{{__('自己紹介を編集する')}}</x-element.a-href>
+                
+                    <p class="align-middle gap-4 font-Roboto font-normal text-lg">{{ $userData->content }}</p>
+                @endforeach
+                <x-portfolio.error :messages="$errors->get('introduction')" class="mt-2" />
+                <x-element.a-href :href=" route('mypage.edit')" theme='secondary' class="w-64 h-14 py-4 px-8 text-center font-normal text-base">{{__('自己紹介を編集する')}}</x-element.a-href>
             </div>
         </div>
         <div class="flex justify-center">
