@@ -1,0 +1,1 @@
+<h3 class="w-36 h-7 font-Robot font-bold text-2xl"> {{ $slot }}</h3>

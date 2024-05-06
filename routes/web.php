@@ -39,6 +39,9 @@ Route::get('/top', App\Http\Controllers\Portfolio\TopController::class)
     ->middleware(['auth', 'verified'])
     ->name('top');
 
+Route::get('/skill/top', [App\Http\Controllers\Portfolio\SkillController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('skill-top');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
