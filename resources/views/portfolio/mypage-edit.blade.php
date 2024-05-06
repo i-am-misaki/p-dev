@@ -9,9 +9,7 @@
             <div class="">
                 <h4 class="font-Roboto font-normal text-xs tracking-wide text-slate-400">自己紹介文</h4>
                 @foreach( $data as $userData )
-                    <textarea type="text" name="introduction" class="w-full h-32 gap-7 border-none resize-none overflow-y-hidden">
-                        {{ $userData->content}}
-                    </textarea>
+                    <textarea type="text" name="introduction" class="w-full h-32 gap-7 border-none resize-none overflow-y-hidden">{{ $userData->content}}</textarea>
                 @endforeach
                 <div class="w-full  border border-b-1 border-slate-900"></div>
                 <x-portfolio.error :messages="$errors->get('introduction')" class="mt-2" />

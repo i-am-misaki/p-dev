@@ -58,16 +58,18 @@ class ProfileController extends Controller
                 // $data->image = $request->file('myimage'); //->store('/public/images');
                 // $data->image = basename($file_name);
                 // $data->image = $dir . $file_name;
-                
-                $file_name = $request->file('myimage')->getClientOriginalName();
-                // storage/app/public/imagesに格納
-                $data->image = $request->myimage->storeAs('public/images', $file_name);
-                // images/ファイル名でDBに格納する
-                $data->image = 'images/' . $file_name;
-                // dd($data->image);
-                $data->save();
-                
-
+                if ($request->file('myimage') == null){
+                    return Redirect::route('top')
+                    ->with('data', $data);
+                } else {
+                    $file_name = $request->file('myimage')->getClientOriginalName();
+                    // storage/app/public/imagesに格納
+                    $data->image = $request->myimage->storeAs('public/images', $file_name);
+                    // images/ファイル名でDBに格納する
+                    $data->image = 'images/' . $file_name;
+                    // dd($data->image);
+                    $data->save();
+                }
             } catch (Exception $e){
                 return back()->with('msg_error', '編集できませんでした');
             };

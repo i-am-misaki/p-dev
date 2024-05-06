@@ -1,7 +1,7 @@
 @slot('header')
 <header class="w-full bg-cyan-800 ">
     <div class="flex justify-between py-10 px-10">
-        <h1 class="text-white font-bold font-Roboto text-4xl">My Portfolio</h1>
+        <a href="{{ route('top') }}" class="text-white font-bold font-Roboto text-4xl">My Portfolio</a>
         @if(Route::has('login'))
             @auth
             <form method="post" action="{{ route('logout') }}">

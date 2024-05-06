@@ -30,6 +30,8 @@ class ProfileUpdateRequest extends FormRequest
             // 'name' => ['required', 'string', 'max:255'],
             // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'introduction' => ['required', 'string', 'max:200', 'min:50'] ,
+            'images' => ['array|max:1'],
+            'images.*' => ['required|image|mimes:jpeg,png,jpg,gif|max:2048'],
         ];
     }
 
@@ -39,8 +41,6 @@ class ProfileUpdateRequest extends FormRequest
             'introduction.required' => '自己紹介は必ず入力してください',
             'introduction.max' => '自己紹介は50文字以上200文字以下で入力してください',
             'introduction.min' => '自己紹介は50文字以上200文字以下で入力してください',
-            'images' => 'array|max:1',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
