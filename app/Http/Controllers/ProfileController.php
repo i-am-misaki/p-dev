@@ -53,11 +53,19 @@ class ProfileController extends Controller
                 
                 // Storage::putFile('public/images', $data->image);
                 // $data->image->save();
-                $dir = 'public/images';
+                // $dir = 'public/';
+                // $file_name = $request->file('myimage')->getClientOriginalName();
+                // $data->image = $request->file('myimage'); //->store('/public/images');
+                // $data->image = basename($file_name);
+                // $data->image = $dir . $file_name;
+                
                 $file_name = $request->file('myimage')->getClientOriginalName();
-                $data->image = $dir . '/' . $file_name;
-                dd($data->image);
-                // $data->save();
+                // storage/app/public/imagesに格納
+                $data->image = $request->myimage->storeAs('public/images', $file_name);
+                // images/ファイル名でDBに格納する
+                $data->image = 'images/' . $file_name;
+                $data->save();
+                // dd($data->image);
                 
 
             } catch (Exception $e){
