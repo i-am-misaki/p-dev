@@ -64,8 +64,8 @@ class ProfileController extends Controller
                 $data->image = $request->myimage->storeAs('public/images', $file_name);
                 // images/ファイル名でDBに格納する
                 $data->image = 'images/' . $file_name;
-                $data->save();
                 // dd($data->image);
+                $data->save();
                 
 
             } catch (Exception $e){
