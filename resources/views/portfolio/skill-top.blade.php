@@ -27,17 +27,23 @@
                         <div class="mt-10">
                             <table class="rounded">
                                 <tr class="h-6 border shadow-sm shadow-slate-300">
-                                    <th class="w-60 py-4 pl-4 pr-10 font-Roboto font-medium text-sm">項目名</th>
-                                    <th class="w-60 py-4 pl-4 pr-10 font-Roboto font-medium text-sm">学習時間</th>
-                                    <th class="w-60 py-4 pl-4 pr-32 font-Roboto font-medium text-sm border-b"></th>
-                                    <th class="w-60 py-4 pl-4 pr-32 font-Roboto font-medium text-sm border-b"></th>
+                                    <th class="w-60 h-14 py-4 pl-4 pr-10"><h4 class="w-11 h-6 font-Roboto font-medium text-sm">項目名</h4></th>
+                                    <th class="w-60 h-14 p-4"><h4 class="w-14 h-6 font-Roboto font-medium text-sm">学習時間</h4></th>
+                                    <th class="w-60 py-4 pl-4 pr-32"></th>
+                                    <th class="w-60 py-4 pl-4 pr-32"></th>
                                 </tr>
                                 <tr class="border shadow-sm shadow-slate-300">
-                                    <td class="w-60 p-4">a</td>
-                                    <td class="w-60 p-4">e</td>
+                                    <td class="w-60 h-12 py-4 pl-4 pr-10">
+                                        <div class="w-full h-5"><h4 class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm">aaaf</h4></div>
+                                    </td>
+                                    <td class="w-60 h-16 p-4">
+                                        <div class="w-40 h-10 gap-2.5">
+                                            <input type="number"  class="opacity-100 w-40 h-10 rounded"></input>
+                                        </div>
+                                    </td>
                                     <form>
                                         <td class="p-4">
-                                            <x-portfolio.submit_button class="h-8 w-40 py-2 px-4 flex items-center justify-center border  border-cyan-700 bg-white text-cyan-800 text-sm">
+                                            <x-portfolio.submit_button class="h-8 w-40 py-2 px-4 flex items-center justify-center border  border-cyan-700 bg-white text-cyan-900 text-sm">
                                                 {{__('学習時間を保存する')}}
                                             </x-portfolio.submit_button>
                                         </td>
@@ -69,12 +75,36 @@
                             </div>
                         </div>
                         <div class="mt-10">
-                            <table class="rounded">
+                        <table class="rounded">
+                                <tr class="h-6 border shadow-sm shadow-slate-300">
+                                    <th class="w-60 h-14 py-4 pl-4 pr-10"><h4 class="w-11 h-6 font-Roboto font-medium text-sm">項目名</h4></th>
+                                    <th class="w-60 h-14 p-4"><h4 class="w-14 h-6 font-Roboto font-medium text-sm">学習時間</h4></th>
+                                    <th class="w-60 py-4 pl-4 pr-32"></th>
+                                    <th class="w-60 py-4 pl-4 pr-32"></th>
+                                </tr>
                                 <tr class="border shadow-sm shadow-slate-300">
-                                    <th class="h-6 w-60 py-4 pr-10 font-Roboto font-medium text-sm">項目名</th>
-                                    <th class="w-60 py-4 pl-4 pr-10 font-Roboto font-medium text-sm">学習時間</th>
-                                    <th class="w-60 py-4 pl-4 pr-32 font-Roboto font-medium text-sm border-b"></th>
-                                    <th class="w-60 py-4 pl-4 pr-32 font-Roboto font-medium text-sm border-b"></th>
+                                    <td class="w-60 h-12 py-4 pl-4 pr-10">
+                                        <div class="w-full h-5"><h4 class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm">aaaf</h4></div>
+                                    </td>
+                                    <td class="w-60 h-16 p-4">
+                                        <div class="w-40 h-10 gap-2.5">
+                                            <input type="number" class="w-40 h-10 rounded"></input>
+                                        </div>
+                                    </td>
+                                    <form>
+                                        <td class="p-4">
+                                            <x-portfolio.submit_button class="h-8 w-40 py-2 px-4 flex items-center justify-center border  border-cyan-700 bg-white text-cyan-900 text-sm">
+                                                {{__('学習時間を保存する')}}
+                                            </x-portfolio.submit_button>
+                                        </td>
+                                    </form>
+                                    <form>
+                                        <td class="pl-10 pr-5 w-48">
+                                            <x-portfolio.submit_button class="h-8 py-2 px-4 bg-rose-400 flex items-center justify-center text-sm">
+                                                {{__('削除する')}}
+                                            </x-portfolio.submit_button>
+                                        </td>
+                                    </form>
                                 </tr>
                             </table>
                         </div>
@@ -95,12 +125,36 @@
                             </div>
                         </div>
                         <div class="mt-10">
-                            <table class="rounded">
+                        <table class="rounded">
+                                <tr class="h-6 border shadow-sm shadow-slate-300">
+                                    <th class="w-60 h-14 py-4 pl-4 pr-10"><h4 class="w-11 h-6 font-Roboto font-medium text-sm">項目名</h4></th>
+                                    <th class="w-60 h-14 p-4"><h4 class="w-14 h-6 font-Roboto font-medium text-sm">学習時間</h4></th>
+                                    <th class="w-60 py-4 pl-4 pr-32"></th>
+                                    <th class="w-60 py-4 pl-4 pr-32"></th>
+                                </tr>
                                 <tr class="border shadow-sm shadow-slate-300">
-                                    <th class="h-6 w-60 py-4 pr-10 font-Roboto font-medium text-sm">項目名</th>
-                                    <th class="w-60 py-4 pl-4 pr-10 font-Roboto font-medium text-sm">学習時間</th>
-                                    <th class="w-60 py-4 pl-4 pr-32 font-Roboto font-medium text-sm border-b"></th>
-                                    <th class="w-60 py-4 pl-4 pr-32 font-Roboto font-medium text-sm border-b"></th>
+                                    <td class="w-60 h-12 py-4 pl-4 pr-10">
+                                        <div class="w-full h-5"><h4 class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm">aaaf</h4></div>
+                                    </td>
+                                    <td class="w-60 h-16 p-4">
+                                        <div class="w-40 h-10 gap-2.5">
+                                            <input type="number" class="w-40 h-10 rounded"></input>
+                                        </div>
+                                    </td>
+                                    <form>
+                                        <td class="p-4">
+                                            <x-portfolio.submit_button class="h-8 w-40 py-2 px-4 flex items-center justify-center border  border-cyan-700 bg-white text-cyan-900 text-sm">
+                                                {{__('学習時間を保存する')}}
+                                            </x-portfolio.submit_button>
+                                        </td>
+                                    </form>
+                                    <form>
+                                        <td class="pl-10 pr-5 w-48">
+                                            <x-portfolio.submit_button class="h-8 py-2 px-4 bg-rose-400 flex items-center justify-center text-sm">
+                                                {{__('削除する')}}
+                                            </x-portfolio.submit_button>
+                                        </td>
+                                    </form>
                                 </tr>
                             </table>
                         </div>

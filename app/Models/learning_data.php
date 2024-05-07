@@ -11,4 +11,14 @@ class learning_data extends Model
 
     
     protected $table = 'learning_data';
+
+
+    protected $fillable = [
+        'id',
+        'name',
+        'studyhour',
+        'month',
+        'user_id',
+        'category_id',
+    ];
 }

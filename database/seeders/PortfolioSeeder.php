@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\learning_data;
+use App\Models\category;
 
 class PortfolioSeeder extends Seeder
 {
@@ -15,7 +17,8 @@ class PortfolioSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(10)->create();
+        learning_data::factory()->count(10)->create();
+        category::factory()->count(10)->create();
         // DB::table('users')->insert([
         //     'name' => 'mm',
         //     'email' => 'testtest@com',
