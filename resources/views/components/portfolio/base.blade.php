@@ -7,11 +7,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <style>
-        input[type=number]::-webkit-inner-spin-button {
-            opacity: 1
-        }
-        </style>
+        
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -20,6 +16,7 @@
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     </head>
     <body class="font-sans text-gray-900">
         {{ $header }}
@@ -29,5 +26,6 @@
             </div>
         </div>
         {{ $footer }}
+        <script src="{{ asset('/js/make_select.js') }}"></script>
     </body>
 </html>

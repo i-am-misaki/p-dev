@@ -25,7 +25,7 @@
                 
 
                 <div class="flex justify-center mt-10">
-                    <x-portfolio.submit_button class="">
+                    <x-portfolio.submit_button class="text-white">
                         {{ __('ログインする') }}
                     </x-portfolio.submit_button>
                 </div>
