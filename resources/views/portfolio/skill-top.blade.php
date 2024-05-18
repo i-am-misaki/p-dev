@@ -1,6 +1,6 @@
 @extends('layouts.skill_base')
 @section('header')
-    <x-portfolio.header></x-portfolio.header>
+    <x-portfolio.header_sec></x-portfolio.header_sec>
 @endsection
 
 @section('content')
@@ -98,5 +98,5 @@
 @endsection
 
 @section('footer')
-<x-portfolio.footer-base></x-portfolio.footer-base>
+<x-portfolio.footer_sec></x-portfolio.footer_sec>
 @endsection
