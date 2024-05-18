@@ -5,6 +5,9 @@
     background: transparent;
     position: relative;
 }
+#tsuki option{
+    background-color: #c0c0c0;
+}
 
 #ajax-div {
     position: relative;
@@ -14,7 +17,7 @@
 #ajax-div::after {
     content: '▼';
     position: absolute;
-    top: 50%;
+    top: 60%;
     right: 10px;
     transform: translateY(-50%);
     pointer-events: none;
