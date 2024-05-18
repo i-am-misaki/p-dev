@@ -57,30 +57,109 @@ function show_month_data(selected_month){
 
 function displayData(data){
 
+    ['table1', 'table2', 'table3'].forEach(tableId => {
+        let table = document.getElementById(tableId);
+        // 見出し以外は削除
+        while (table.rows.length > 1) {
+            table.deleteRow(1);
+        }
+    });
+
     data.forEach(skills => {
-        let study_name1 = document.getElementById('study_name1');
-        let study_name2 = document.getElementById('study_name2');
-        let study_name3 = document.getElementById('study_name3');
-        let study_hour1 = document.getElementById('study_hour1');
-        let study_hour2 = document.getElementById('study_hour2');
-        let study_hour3 = document.getElementById('study_hour3');
+        let tr = document.createElement('tr');
+        tr.classList.add('border', 'shadow-sm', 'shadow-slate-300');
+        // 項目名
+        let td1 = document.createElement('td');
+        td1.classList.add('w-60', 'h-12', 'py-4', 'pl-4', 'pr-10');
+        let div1 = document.createElement('div');
+        div1.classList.add('w-full', 'h-5');
+        let h4 = document.createElement('h4');
+        h4.classList.add('h-5', 'w-10', 'tracking-widest', 'font-Roboto', 'font-normal', 'text-sm');
+        // 学習時間
+        let td2 = document.createElement('td');
+        td2.classList.add('w-60', 'h-16', 'p-4');
+        let div2 = document.createElement('div')
+        div2.classList.add('w-40', 'h-10', 'gap-2.5');
+        let input = document.createElement('input');
+        input.classList.add('opacity-100', 'w-40', 'h-10', 'rounded');
+        // 保存
+        let formSave = document.createElement('form');
+        let td3 = document.createElement('td');
+        td3.classList.add('p-4');
+        let saveBtn = document.createElement('button');
+        saveBtn.classList.add('h-8', 'w-40', 'py-2', 'px-4', 'flex', 'items-center', 'justify-center', 'border',  'border-cyan-700', 'bg-white', 'text-cyan-900', 'text-sm', 'rounded')
+        saveBtn.textContent = '学習時間を保存する';
+        // 削除
+        let formDelete = document.createElement('form');
+        let td4 = document.createElement('td');
+        td4.classList.add('pl-10', 'pr-5', 'w-48');
+        let deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('h-8', 'py-2', 'px-4', 'text-white', 'bg-rose-400', 'flex', 'items-center', 'justify-center', 'text-sm', 'rounded');
+        deleteBtn.textContent = '削除する';
+
+        h4.textContent = skills.name;
+        input.value = skills.studyhour;
+        input.type = 'number';
+
+       
         let table1 = document.getElementById('table1');
         let table2 = document.getElementById('table2');
         let table3 = document.getElementById('table3');
-        let tr = document.getElementById('tr');
 
         if (skills.category_id === 1){
             table1.appendChild(tr);
-            study_name1.textContent = `${skills.name}`;
-            study_hour1.value = `${skills.studyhour}`;
+            // 項目名
+            tr.appendChild(td1);
+            td1.appendChild(div1);
+            div1.appendChild(h4);
+            // 学習時間
+            tr.appendChild(td2);
+            td2.appendChild(div2);
+            div2.appendChild(input);
+            // 保存
+            tr.appendChild(td3);
+            td3.appendChild(formSave);
+            formSave.appendChild(saveBtn);
+            // 削除
+            tr.appendChild(td4);
+            td4.appendChild(formDelete);
+            formDelete.appendChild(deleteBtn);
         } else if(skills.category_id === 2){
             table2.appendChild(tr);
-            study_name2.textContent = `${skills.name}`;
-            study_hour2.value = `${skills.studyhour}`;
+            // 項目名
+            tr.appendChild(td1);
+            td1.appendChild(div1);
+            div1.appendChild(h4);
+            // 学習時間
+            tr.appendChild(td2);
+            td2.appendChild(div2);
+            div2.appendChild(input);
+            // 保存
+            tr.appendChild(td3);
+            td3.appendChild(formSave);
+            formSave.appendChild(saveBtn);
+            // 削除
+            tr.appendChild(td4);
+            td4.appendChild(formDelete);
+            formDelete.appendChild(deleteBtn);
         } else if(skills.category_id === 3){
             table3.appendChild(tr);
-            study_name3.textContent = `${skills.name}`;
-            study_hour3.value = `${skills.studyhour}`;
+            // 項目名
+            tr.appendChild(td1);
+            td1.appendChild(div1);
+            div1.appendChild(h4);
+            // 学習時間
+            tr.appendChild(td2);
+            td2.appendChild(div2);
+            div2.appendChild(input);
+            // 保存
+            tr.appendChild(td3);
+            td3.appendChild(formSave);
+            formSave.appendChild(saveBtn);
+            // 削除
+            tr.appendChild(td4);
+            td4.appendChild(formDelete);
+            formDelete.appendChild(deleteBtn);
         }
     });
 }

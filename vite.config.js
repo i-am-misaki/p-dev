@@ -11,6 +11,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/style.css',
                 'resources/js/app.js',
                 'resources/js/make_select.js',
                 'resources/sass/app.scss',

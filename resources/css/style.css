@@ -1,0 +1,23 @@
+#tsuki {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    position: relative;
+}
+
+#ajax-div {
+    position: relative;
+    display: inline-block;
+}
+
+#ajax-div::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* font-size: 12px;  Adjust size as needed */
+    /* color: #333;  Change the color as needed */
+}
