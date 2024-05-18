@@ -1,5 +1,9 @@
-<x-portfolio.base>
+@extends('layouts.skill_base')
+@section('header')
     <x-portfolio.header></x-portfolio.header>
+@endsection
+
+@section('content')
     <div class="flex justify-center py-10 w-full">
         <div class="w-2/3">
             <div id="ajax-div" class="relative">
@@ -23,22 +27,21 @@
                             </div>
                         </div>
                         <div class="mt-10">
-                            <table class="rounded">
+                            <table id="table1" class="rounded">
                                 <tr class="h-6 border shadow-sm shadow-slate-300">
                                     <th class="w-60 h-14 py-4 pl-4 pr-10"><h4 class="w-11 h-6 font-Roboto font-medium text-sm">項目名</h4></th>
                                     <th class="w-60 h-14 p-4"><h4 class="w-14 h-6 font-Roboto font-medium text-sm">学習時間</h4></th>
                                     <th class="w-60 py-4 pl-4 pr-32"></th>
                                     <th class="w-60 py-4 pl-4 pr-32"></th>
                                 </tr>
-                                @foreach($skills as $skill)
-                                    @if($skill->category_id == 1)
+                                
                                     <tr class="border shadow-sm shadow-slate-300">
                                         <td class="w-60 h-12 py-4 pl-4 pr-10">
-                                            <div class="w-full h-5"><h4 class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm">{{ $skill->name }}</h4></div>
+                                            <div class="w-full h-5"><h4 id="study_name1" class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm"></h4></div>
                                         </td>
                                         <td class="w-60 h-16 p-4">
                                             <div class="w-40 h-10 gap-2.5">
-                                                <input type="number"  class="opacity-100 w-40 h-10 rounded" value="{{ $skill->studyhour }}"></input>
+                                                <input type="number" id="study_hour1" class="opacity-100 w-40 h-10 rounded"></input>
                                             </div>
                                         </td>
                                         <form>
@@ -56,9 +59,7 @@
                                             </td>
                                         </form>
                                     </tr>
-                                    @else
-                                    @endif
-                                @endforeach
+                                    
                             </table>
                         </div>
                     </div>
@@ -78,22 +79,21 @@
                             </div>
                         </div>
                         <div class="mt-10">
-                            <table class="rounded">
+                            <table id="table2" class="rounded">
                                 <tr class="h-6 border shadow-sm shadow-slate-300">
                                     <th class="w-60 h-14 py-4 pl-4 pr-10"><h4 class="w-11 h-6 font-Roboto font-medium text-sm">項目名</h4></th>
                                     <th class="w-60 h-14 p-4"><h4 class="w-14 h-6 font-Roboto font-medium text-sm">学習時間</h4></th>
                                     <th class="w-60 py-4 pl-4 pr-32"></th>
                                     <th class="w-60 py-4 pl-4 pr-32"></th>
                                 </tr>
-                                @foreach($skills as $skill)
-                                    @if($skill->category_id == 2)
+                                
                                     <tr class="border shadow-sm shadow-slate-300">
                                         <td class="w-60 h-12 py-4 pl-4 pr-10">
-                                            <div class="w-full h-5"><h4 class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm">{{ $skill->name }}</h4></div>
+                                            <div class="w-full h-5"><h4 id="study_name2" class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm"></h4></div>
                                         </td>
                                         <td class="w-60 h-16 p-4">
                                             <div class="w-40 h-10 gap-2.5">
-                                                <input type="number"  class="opacity-100 w-40 h-10 rounded" value="{{ $skill->studyhour }}"></input>
+                                                <input type="number"  id="study_hour2" class="opacity-100 w-40 h-10 rounded"></input>
                                             </div>
                                         </td>
                                         <form>
@@ -111,9 +111,7 @@
                                             </td>
                                         </form>
                                     </tr>
-                                    @else
-                                    @endif
-                                @endforeach
+                                    
                             </table>
                         </div>
                     </div>
@@ -132,22 +130,21 @@
                             </div>
                         </div>
                         <div class="mt-10">
-                            <table class="rounded">
+                            <table id="table3" class="rounded">
                                 <tr class="h-6 border shadow-sm shadow-slate-300">
                                     <th class="w-60 h-14 py-4 pl-4 pr-10"><h4 class="w-11 h-6 font-Roboto font-medium text-sm">項目名</h4></th>
                                     <th class="w-60 h-14 p-4"><h4 class="w-14 h-6 font-Roboto font-medium text-sm">学習時間</h4></th>
                                     <th class="w-60 py-4 pl-4 pr-32"></th>
                                     <th class="w-60 py-4 pl-4 pr-32"></th>
                                 </tr>
-                                @foreach($skills as $skill)
-                                    @if($skill->category_id == 3)
-                                    <tr class="border shadow-sm shadow-slate-300">
+                                
+                                    <tr id="tr" class="border shadow-sm shadow-slate-300">
                                         <td class="w-60 h-12 py-4 pl-4 pr-10">
-                                            <div class="w-full h-5"><h4 class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm">{{ $skill->name }}</h4></div>
+                                            <div class="w-full h-5"><h4 id="study_name3" class="h-5 w-10 tracking-widest font-Roboto font-normal text-sm"></h4></div>
                                         </td>
                                         <td class="w-60 h-16 p-4">
                                             <div class="w-40 h-10 gap-2.5">
-                                                <input type="number"  class="opacity-100 w-40 h-10 rounded" value="{{ $skill->studyhour }}"></input>
+                                                <input type="number"  id="study_hour3" class="opacity-100 w-40 h-10 rounded" value=""></input>
                                             </div>
                                         </td>
                                         <form>
@@ -165,9 +162,6 @@
                                             </td>
                                         </form>
                                     </tr>
-                                    @else
-                                    @endif
-                                @endforeach
                             </table>
                         </div>
                     </div>
@@ -175,6 +169,13 @@
             </form>
         </div>
     </div>
-    <div id="result"></div>
-    <x-portfolio.footer-base></x-portfolio.footer-base>
-</x-portfolio.base>
+    <script>
+        window.skills = @json($skills);
+        window.currentMonth = @json($currentMonth);
+    </script>
+    <script src="{{ asset('/js/make_select.js') }}"></script>
+@endsection
+
+@section('footer')
+<x-portfolio.footer-base></x-portfolio.footer-base>
+@endsection

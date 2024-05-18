@@ -20,11 +20,26 @@ class SkillController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $skills = learning_data::where('user_id', $id)->get();
+        // $skills = learning_data::where('user_id', $id)->get();
+        $currentMonth = now()->format('Y-m');
+        // dd($currentMonth);
+        $skills = learning_data::where('user_id', $id)
+                    ->whereYear('month', now()->year)
+                    ->whereMonth('month', now()->month)
+                    ->get();
         
-        return view('portfolio.skill-top',
-            ['skills' => $skills],
+        return view('portfolio.skill-top',[
+            'skills' =>$skills,
+            'currentMonth' => $currentMonth,
+        ]
+            // ['skills' => $skills],
+            
         );
+        // if($skills->isEmpty()){
+        //     return response()->json(['error' => 'No data found for the selected month']);
+        //    }
+        // return response()->json($skills);
+
     }
 
     /**
@@ -77,7 +92,7 @@ class SkillController extends Controller
        }
         
 
-        header('Content-Type: application/json; charset=UTF-8');
+        // header('Content-Type: application/json; charset=UTF-8');
 
         return response()->json($skills);
 
