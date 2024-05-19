@@ -18,7 +18,7 @@
                             </div>
                             
                             <div>
-                                <x-element.a-href href="{{ url('/skill/add') }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href href="{{ url('/skill/add', ['portfolio.section' => 'バックエンド']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
@@ -43,7 +43,7 @@
                             </div>
                             
                             <div>
-                                <x-element.a-href  href="{{ url('/skill/add') }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href  href="{{ url('/skill/add', ['portfolio.section' => 'フロントエンド']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
@@ -67,7 +67,7 @@
                                 <x-portfolio.section>インフラ</x-portfolio.section>
                             </div>
                             <div>
-                                <x-element.a-href href="{{ url('/skill/add') }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href href="{{ url('/skill/add', ['portfolio.section' => 'インフラ']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
