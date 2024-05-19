@@ -39,7 +39,7 @@
                     <div class="w-full">
                         <div class="flex justify-between">
                             <div class="w-60 h-11 gap-4 border-b-2 border-black">
-                                <x-portfolio.section>フロントエンド</x-portfolio.section>
+                                <x-portfolio.section class="w-40">フロントエンド</x-portfolio.section>
                             </div>
                             
                             <div>
