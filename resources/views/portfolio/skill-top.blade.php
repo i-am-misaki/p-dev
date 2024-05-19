@@ -13,13 +13,12 @@
                 <div class="w-full flex justify-center h-3/5 p-10 gap-20 border border-solid border-black rounded-lg my-10">
                     <div class="w-full">
                         <div class="flex justify-between">
-                            <div>
+                            <div class="w-60 h-11 gap-4 border-b-2 border-black">
                                 <x-portfolio.section>バックエンド</x-portfolio.section>
-                                <span class="w-60 border-black border-b-2"></span>
                             </div>
                             
                             <div>
-                                <x-element.a-href  class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href href="{{ url('/skill/add') }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
@@ -39,13 +38,12 @@
                 <div class="w-full flex justify-center h-3/5 p-10 gap-20  border border-solid border-black rounded-lg my-10">
                     <div class="w-full">
                         <div class="flex justify-between">
-                            <div>
+                            <div class="w-60 h-11 gap-4 border-b-2 border-black">
                                 <x-portfolio.section>フロントエンド</x-portfolio.section>
-                                <span class="w-60 border-black border-b-2"></span>
                             </div>
                             
                             <div>
-                                <x-element.a-href  class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href  href="{{ url('/skill/add') }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
@@ -65,12 +63,11 @@
                 <div class="w-full flex justify-center h-3/5 p-10 gap-20  border border-solid border-black rounded-lg my-10">
                     <div class="w-full">
                         <div class="flex justify-between">
-                            <div>
+                            <div class="w-60 h-11 gap-4 border-b-2 border-black">
                                 <x-portfolio.section>インフラ</x-portfolio.section>
-                                <span class="w-60 border-black border-b-2"></span>
                             </div>
                             <div>
-                                <x-element.a-href  class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href href="{{ url('/skill/add') }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
