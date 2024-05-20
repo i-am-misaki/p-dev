@@ -1,3 +1,4 @@
+/* プルダウンの矢印カスタマイズ */
 #tsuki {
     appearance: none;
     -webkit-appearance: none;
@@ -21,6 +22,4 @@
     right: 10px;
     transform: translateY(-50%);
     pointer-events: none;
-    /* font-size: 12px;  Adjust size as needed */
-    /* color: #333;  Change the color as needed */
 }
