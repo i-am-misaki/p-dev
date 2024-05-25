@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('studyhour');
-            $table->date('month');
+            $table->string('month');
             $table->integer('category_id');
             $table->integer('user_id');
             $table->foreign('category_id')->references('id')->on('categories');

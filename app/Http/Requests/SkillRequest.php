@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SkillRequest extends FormRequest
 {
@@ -22,9 +23,10 @@ class SkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'learningName' => ['required', 'string', 'max:50', 'unique:learning_data,name'] ,
-            'studyHour' => ['required', 'regex:/^[0-]+$/'],
-            
+            // 'learningName' => 'required|string|max:50', # |unique:learning_data,name',
+            // 'studyHour' => 'required|min:0',
+            'learningName' => ['required', 'string', 'max:50', 'unique:learning_data,name'],
+            'studyHour' => ['required', 'integer', 'min:0'],
         ];
     }
 
@@ -35,7 +37,15 @@ class SkillRequest extends FormRequest
             'learningName.max' => '項目名は50文字以内で入力してください',
             'learningName.unique' => ':inputは既に登録されています',
             'studyHour.required' => '学習時間は必ず入力してください',
-            'studyHour.regex' => '学習時間は0以上の数字で入力してください',
+            'studyHour.min' => '学習時間は0以上の数字で入力してください',
         ];
     }
+
+//     protected function failedValidation(Validator $validator)
+//     {
+//         throw new HttpResponseException(response()->json([
+//             'success' => false,
+//             'message' => $validator->errors()->first()
+//         ], 422));
+//     }
 }

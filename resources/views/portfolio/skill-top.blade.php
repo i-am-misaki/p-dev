@@ -1,4 +1,4 @@
-@extends('layouts.skill_base')
+@extends('layouts.skill_top')
 @section('header')
     <x-portfolio.header_sec></x-portfolio.header_sec>
 @endsection
@@ -18,7 +18,7 @@
                             </div>
                             
                             <div>
-                                <x-element.a-href href="{{ url('/skill/add', ['portfolio.section' => 'バックエンド']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href id="addition1" href="{{ url('/skill/add', ['portfolio.section' => 'バックエンド']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
@@ -39,11 +39,11 @@
                     <div class="w-full">
                         <div class="flex justify-between">
                             <div class="w-60 h-11 gap-4 border-b-2 border-black">
-                                <x-portfolio.section >フロントエンド</x-portfolio.section>
+                                <x-portfolio.section>フロントエンド</x-portfolio.section>
                             </div>
                             
                             <div>
-                                <x-element.a-href  href="{{ url('/skill/add', ['portfolio.section' => 'フロントエンド']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href id="addition2" href="{{ url('/skill/add', ['portfolio.section' => 'フロントエンド']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>
@@ -67,7 +67,7 @@
                                 <x-portfolio.section>インフラ</x-portfolio.section>
                             </div>
                             <div>
-                                <x-element.a-href href="{{ url('/skill/add', ['portfolio.section' => 'インフラ']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
+                                <x-element.a-href id="addition3" href="{{ url('/skill/add', ['portfolio.section' => 'インフラ']) }}" class="w-24 h-14 py-4 px-8 text-center font-normal text-base">
                                     {{__('項目を追加する')}}
                                 </x-element.a-href>
                             </div>

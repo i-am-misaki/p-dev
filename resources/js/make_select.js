@@ -29,6 +29,25 @@ document.addEventListener("DOMContentLoaded", function(){
         let selected_month = selectTag.value;
         show_month_data(selected_month);
     });
+
+    function handleAddition(event, href){
+        event.preventDefault();
+        // 選択された月をセッションに保存
+        let selected_month = selectTag.value;
+        sessionStorage.setItem('selected_month', selected_month);
+
+        window.location.href = href;
+    }
+
+    document.getElementById('addition1').addEventListener("click", function(event){
+        handleAddition(event, this.href);
+    })
+    document.getElementById('addition2').addEventListener("click", function(event){
+        handleAddition(event, this.href);
+    })
+    document.getElementById('addition3').addEventListener("click", function(event){
+        handleAddition(event, this.href);
+    })
 });
 
 

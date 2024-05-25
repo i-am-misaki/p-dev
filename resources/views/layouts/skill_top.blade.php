@@ -15,15 +15,16 @@
 
         
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/js/app.js', 'resources/js/make_select.js'])
+        <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
     </head>
     <body class="font-sans text-gray-900">
-        {{ $header }}
+        @yield('header')
         <div class="flex justify-center items-center">
             <div class="w-full dark:bg-gray-800">
-                {{ $slot }}
+                @yield('content')
             </div>
         </div>
-        {{ $footer }}
+        @yield('footer')
     </body>
 </html>

@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Http\Requests\SkillRequest;
 use App\Models\learning_data;
 use App\Models\category;
-use App\Http\Requests\Auth\SkillRequest;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
@@ -24,10 +24,9 @@ class SkillController extends Controller
         $id = Auth::id();
         // $skills = learning_data::where('user_id', $id)->get();
         $currentMonth = now()->format('Y-m');
-        // dd($currentMonth);
         $skills = learning_data::where('user_id', $id)
-                    ->whereYear('month', now()->year)
-                    ->whereMonth('month', now()->month)
+                    // ->whereYear('month', now()->year)
+                    // ->whereMonth('month', now()->month)
                     ->get();
         
         return view('portfolio.skill-top',[
@@ -49,14 +48,10 @@ class SkillController extends Controller
     // 項目追加ページに遷移
     public function create($section)
     {
-        // $id = Auth::id();
-        // if($id !== Auth::id()){
-        //         abort(403, 'Unauthrized action.');
-        // } 
-
         // dd($section);
 
-        return view('portfolio.skill-add', ['section' => $section]);
+        return view('portfolio.skill-add', 
+            ['section' => $section]);
     }
 
     /**
@@ -65,32 +60,91 @@ class SkillController extends Controller
     // 新しく項目、学習時間追加
     public function store(SkillRequest $request)
     {
-        $id = Auth::id();
-        if($id !== Auth::id()){
-                abort(403, 'Unauthrized action.');
+        // ------XMLHttpRequest-------------------------------
+        // $id = Auth::id();
+
+        // $learningName = $request->input('learningName');
+        // $studyhour = $request->input('studyHour');
+
+        // $data = $request->all();
+        // $add_learningName = $data['learningName'];
+        // $studyhour = $data['studyHour'];
+        // $month = $data['month'];
+        // $section = $data['section'];
+
+        // $exists = learning_data::where('name', $learningName)->exists();
+
+        // if(!$exists){
+        //     $category = categories::where('name', $section)
+        //                 ->first();
+        
+        //     $learning_data = new learning_data();
+        //     $learning_data->user_id = $id;
+        //     $learning_data->name = $learningName;
+        //     $learning_data->sturyhour = $studyhour;
+        //     $learning_data->month = $month;
+        //     $learning_data->category_id = $category->id;
+        //     $learning_data->save();
+        //     return response()->json(['message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
+            
+        // } else {
+        //     return response()->json(['message' => "{$learningName}は既に登録されています"]);
+            
+        // }
+        // ------fetch-------------------------------
+        // $raw = file_get_contents('php://input');
+        // $data = json_decode($raw);
+        // $res = $re;
+        try {
+            $id = Auth::id();
+
+            // $learningName = $_POST['learningName'];
+            // $studyhour = $_POST['studyHour'];
+            // $section = $_POST['section'];
+            // $selectedMonth = $_POST['selectedMonth'];
+            $learningName = $request->input('learningName');
+            $studyhour = $request->input('studyHour');
+            $section = $request->input('section');
+            $selectedMonth = $request->input('selectedMonth');
+            
+            $category = category::where('name', $section)
+                        ->first();
+        
+            $learning_data = new learning_data();
+            $learning_data->user_id = $id;
+            $learning_data->name = $learningName;
+            $learning_data->studyhour = $studyhour;
+            $learning_data->month = $selectedMonth;
+            $learning_data->category_id = $category->id;
+            $learning_data->save();
+
+            return response()->json(['message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
+        
+
+        } catch (Exception $e){
+            return resonse()->json(['message' => 'データの追加中にエラーが発生しました'], 500);
         }
-
-        $request->validate([
-            // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            // 'password' => ['required', Rules\Password::defaults()],
-            'learningName' => ['required', 'string', 'max:50', 'unique:learning_data,name'] ,
-            'studyHour' => ['required', 'regex:/^[0-]+$/'],
-        ]);
-
-        learning_data::create([
-            'name' => $request->input('learningName'),
-            'studyhour' => $request->input('studyHour'),
-            'month' => $request->input('tsuki'),
-        ]);
-
+        
+        
+            // return response()->json(['success' => false, 'message' => "{$learningName}は既に登録されています"]);
+            
+        
+    
+        // -------------------------------------
         // event(new Registered($user));
-
+        
         // Auth::login($user);
-
+        // $data->save();
         // return redirect(RouteServiceProvider::HOME);
-        return redirect()->route('skill-top');
-    }
+        
+        // return response()->json($data);
+    // } else {
+    //     return redirect()->route('/skill/top-select');
+        
+    // }
 
+    }
+    
     /**
      * Display the specified resource.
      */
