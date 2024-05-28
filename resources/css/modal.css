@@ -1,16 +1,28 @@
-.layer { 
-    background: rgba(0, 0, 0, 0.5); /*背景を薄くする */
-    width: 100%;
-    height: 100%;
-    position: fixed; /*画面に固定するために指定 */
-    top: 0;
-    left: 0;
+/* .layer {  */
+    /* background: rgba(0, 0, 0, 0.5); 背景を薄くする */
+    /* width: 100%;
+    height: 100%; */
+    /* position: fixed; 画面に固定するために指定 */
+    /* top: 0;
+    left: 0; */
     /* モーダルウィンドウ 初期*/
-    z-index: -1;
+    /* z-index: -1;
     opacity: 0;
     visibility: hidden;
     transition: opasicy 1s linear, visibility 1s linear, z-index 1s linear;
-  }
+  } */
+
+  .layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Optional: To add a semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
   .layer.is-open {
     z-index: 999;
@@ -25,28 +37,22 @@
 
   .js-modal.is-open{
     display: block;
-  } */
+  } 
 
 
-.js-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+/* .js-modal {
+    display: none; */
+    /* position: fixed; */
+    /* top: 0; */
+    /* left: 0; */
+    /* width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-}
+} */
 
 .js-modal.is-open {
     display: flex;
 }
 
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}

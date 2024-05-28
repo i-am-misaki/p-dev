@@ -36,7 +36,7 @@
 
 
     <!-- モーダルウィンドウ -->
-    <div class="layer js-modal">
+    <div class="layer js-modal flex justify-center items-center h-screen w-screen">
         <div class="modal_contents flex justify-center item-center h-60 w-1/2 bg-white">
             <div class="modal_content flex-col w-full">
                 <div class="flex justify-center item-center my-8 w-full">
