@@ -12,9 +12,10 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/style.css',
+                'resources/css/modal.css',
                 'resources/js/app.js',
-                'resources/js/make_select.js',
-                'resources/js/modal.js',
+                'public/js/make_select.js',
+                'public/js/modal.js',
                 'resources/sass/app.scss',
             ],
             refresh: true,

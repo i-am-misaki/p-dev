@@ -9,7 +9,7 @@
         <!-- {{ $section }}の値をjavascriptに送信するため -->
         <input type="hidden" id="section" name="section" value="{{ $section }}">
     </div>
-    <form action="" method="" class="flex flex-col items-center mb-96">
+    <form id="addForm" class="flex flex-col items-center mb-96">
         @csrf
         <div class="h-64 w-2/5">
             <div class="flex flex-col border-b mt-6 gap-2.5">
@@ -17,8 +17,9 @@
                 <input type="text" id="learningName" name="learningName" class="border-none outline-none" />
             </div>
             @error('learningName')
-            <p id="errorMessage" style="color: red;" id="error_learning_data">{{ $message }}</p>
+            <p style="color: red;">{{ $message }}</p>
             @enderror
+            <p id="errorMessage" style="color: red;"></p>
             <div class="flex flex-col border-b mt-10 gap-2.5">
                 <x-portfolio.input_label :value="__('学習時間')" ></x-portfolio.input_label>
                 <input id="studyHour" name="studyHour" type="number" class="border-none outline-none " />
@@ -28,26 +29,26 @@
             <p style="color: red;" id="error_studyhour">{{ $message }}</p>
             @enderror
             <div  class="flex justify-center mt-20">
-                <x-portfolio.submit_button id="addLearning" class=" text-white">{{ __('追加する') }}</x-portfolio.submit_button>
+                <x-portfolio.button id="addLearning" class=" text-white">{{ __('追加する') }}</x-portfolio.button>
             </div>
         </div>
     </form>
 
 
     <!-- モーダルウィンドウ -->
-    <div class="flex justify-center">
-        <div class="flex justify-center w-1/2 h-60 gap-10 bg-slate-500">
-            <div class="">
-                <div class="flex justify-center my-8 w-60">
-                    <h4 id="succcessMessage" style="color: red;" class="text-center font-Roboto font-bold text-lg w-64 h-14"></h4>
+    <div class="layer js-modal">
+        <div class="modal_contents flex justify-center item-center h-60 w-1/2 bg-white">
+            <div class="modal_content flex-col w-full">
+                <div class="flex justify-center item-center my-8 w-full">
+                    <h4 id="succcessMessage"  class="text-center font-Roboto font-bold text-lg w-64 h-14"></h4>
                 </div>
-                <div class="flex justify-center">
-                    <x-element.a-href  class="backToAdd h-12 w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-element.a-href>
-                    <!-- w-28 h-4 -->
+                <div class="flex justify-center items-center h-12">
+                    <x-element.a-href :href=" url('/skill/top')" class="backToAdd  w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-element.a-href>
                 </div>
             </div>
         </div>
     </div>
+    
     <script src="{{ asset('/js/modal.js') }}"></script>
 @endsection
 @section('footer')

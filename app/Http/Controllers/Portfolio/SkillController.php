@@ -60,69 +60,40 @@ class SkillController extends Controller
     // 新しく項目、学習時間追加
     public function store(SkillRequest $request)
     {
-        // ------XMLHttpRequest-------------------------------
-        // $id = Auth::id();
-
-        // $learningName = $request->input('learningName');
-        // $studyhour = $request->input('studyHour');
-
-        // $data = $request->all();
-        // $add_learningName = $data['learningName'];
-        // $studyhour = $data['studyHour'];
-        // $month = $data['month'];
-        // $section = $data['section'];
-
-        // $exists = learning_data::where('name', $learningName)->exists();
-
-        // if(!$exists){
-        //     $category = categories::where('name', $section)
-        //                 ->first();
-        
-        //     $learning_data = new learning_data();
-        //     $learning_data->user_id = $id;
-        //     $learning_data->name = $learningName;
-        //     $learning_data->sturyhour = $studyhour;
-        //     $learning_data->month = $month;
-        //     $learning_data->category_id = $category->id;
-        //     $learning_data->save();
-        //     return response()->json(['message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
-            
-        // } else {
-        //     return response()->json(['message' => "{$learningName}は既に登録されています"]);
-            
-        // }
-        // ------fetch-------------------------------
-        // $raw = file_get_contents('php://input');
-        // $data = json_decode($raw);
-        // $res = $re;
+   
         try {
             $id = Auth::id();
 
-            // $learningName = $_POST['learningName'];
-            // $studyhour = $_POST['studyHour'];
-            // $section = $_POST['section'];
-            // $selectedMonth = $_POST['selectedMonth'];
             $learningName = $request->input('learningName');
             $studyhour = $request->input('studyHour');
             $section = $request->input('section');
             $selectedMonth = $request->input('selectedMonth');
-            
+
             $category = category::where('name', $section)
+                            ->first();
+            
+            $exist_skill = learning_data::where('user_id', $id)
+                        ->where('name', $learningName)
+                        ->where('category_id', $category->id)
                         ->first();
-        
-            $learning_data = new learning_data();
-            $learning_data->user_id = $id;
-            $learning_data->name = $learningName;
-            $learning_data->studyhour = $studyhour;
-            $learning_data->month = $selectedMonth;
-            $learning_data->category_id = $category->id;
-            $learning_data->save();
 
-            return response()->json(['message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
-        
-
+            if($exist_skill){
+                return response()->json(['error_message' => "{$learningName}は既に登録されています"]);
+            } else {
+                
+            
+                $learning_data = new learning_data();
+                $learning_data->user_id = $id;
+                $learning_data->name = $learningName;
+                $learning_data->studyhour = $studyhour;
+                $learning_data->month = $selectedMonth;
+                $learning_data->category_id = $category->id;
+                $learning_data->save();
+    
+                return response()->json(['message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
+            }
         } catch (Exception $e){
-            return resonse()->json(['message' => 'データの追加中にエラーが発生しました'], 500);
+            return resonse()->json(['e_message' => 'データの追加中にエラーが発生しました'], 500);
         }
         
         

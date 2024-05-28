@@ -25,7 +25,7 @@ class SkillRequest extends FormRequest
         return [
             // 'learningName' => 'required|string|max:50', # |unique:learning_data,name',
             // 'studyHour' => 'required|min:0',
-            'learningName' => ['required', 'string', 'max:50', 'unique:learning_data,name'],
+            'learningName' => ['required', 'string', 'max:50'],
             'studyHour' => ['required', 'integer', 'min:0'],
         ];
     }
@@ -35,7 +35,7 @@ class SkillRequest extends FormRequest
         return[
             'learningName.required' => '項目名は必ず入力してください',
             'learningName.max' => '項目名は50文字以内で入力してください',
-            'learningName.unique' => ':inputは既に登録されています',
+            // 'learningName.unique' => ':inputは既に登録されています',
             'studyHour.required' => '学習時間は必ず入力してください',
             'studyHour.min' => '学習時間は0以上の数字で入力してください',
         ];

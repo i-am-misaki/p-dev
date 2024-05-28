@@ -23,3 +23,29 @@
     transform: translateY(-50%);
     pointer-events: none;
 }
+#td4{
+    padding-left: 40px;
+    padding-right: 20px;
+    width: 200px;
+}
+#deleteBtn{
+    width: 88px;
+    color: white;
+    height: 32px;
+    border-radius: 4px;
+    padding: 8px 16px;
+    background-color: rgba(238, 105, 105, 1);
+    font-size: 14px;
+    line-height: 16.41px;
+}
+
+#saveBtn{
+    width: 158px;
+    color: rgba(27, 86, 120, 1);
+    height: 32px;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: solid 1px rgba(27, 86, 120, 1);
+    font-size: 14px;
+    line-height: 16.41px;
+}
