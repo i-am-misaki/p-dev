@@ -15,7 +15,7 @@
 
         
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/css/modal.css', 'resources/js/app.js', 'public/js/modal.js'])
+        @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/css/modal.css', 'resources/js/app.js', 'resources/js/modal.js'])
         <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
     </head>
     <body class="font-sans text-gray-900">
