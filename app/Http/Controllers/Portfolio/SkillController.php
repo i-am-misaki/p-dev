@@ -58,30 +58,30 @@ class SkillController extends Controller
      * Store a newly created resource in storage.
      */
     // 新しく項目、学習時間追加
-    public function store(SkillRequest $request)
+    public function store(Request $request)
     {
    
+        $id = Auth::id();
+        
+        $learningName = $request->input('learningName');
+        $studyhour = $request->input('studyHour');
+        $section = $request->input('section');
+        // $section = $_POST['section'];
+        $selectedMonth = $request->input('selectedMonth');
+        // $selectedMonth = $_POST['selected_month'];
+        
+        $category = category::where('name', $section)
+            ->first();
+        
+        // learning_dataに同じnameが存在するか確認
+        $exist_skill = learning_data::where('user_id', $id)
+            ->where('name', $learningName)
+            ->where('category_id', $category->id)
+            ->get();
+        
         try {
-            $id = Auth::id();
-
-            $learningName = $request->input('learningName');
-            $studyhour = $request->input('studyHour');
-            $section = $request->input('section');
-            $selectedMonth = $request->input('selectedMonth');
-
-            $category = category::where('name', $section)
-                            ->first();
-            
-            $exist_skill = learning_data::where('user_id', $id)
-                        ->where('name', $learningName)
-                        ->where('category_id', $category->id)
-                        ->first();
-
-            if($exist_skill){
-                return response()->json(['error_message' => "{$learningName}は既に登録されています"]);
-            } else {
-                
-            
+            // learning_dataのname有無判定
+            if($exist_skill->isEmpty()){
                 $learning_data = new learning_data();
                 $learning_data->user_id = $id;
                 $learning_data->name = $learningName;
@@ -90,30 +90,20 @@ class SkillController extends Controller
                 $learning_data->category_id = $category->id;
                 $learning_data->save();
     
-                return response()->json(['message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
+                return response()->json(['success_message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
+        //         // $succsess_message = "{$category->name} に {$learningName} を{$studyhour}分で追加しました！";
+                // echo json_encode($succsess_message);
+            } else {
+                return response()->json(['error_message' => "{$learningName}は既に登録されています"]);
+                // $error_message = "{$learningName}は既に登録されています";
+                // echo json_encode($error_message);
             }
         } catch (Exception $e){
+        //     // Log::error('ERROR STORING SKILL: '. $e->getMessage());
             return resonse()->json(['e_message' => 'データの追加中にエラーが発生しました'], 500);
+        //     // $e_message = 'データの追加中にエラーが発生しました';
+        //     // echo json_encode($e_message);
         }
-        
-        
-            // return response()->json(['success' => false, 'message' => "{$learningName}は既に登録されています"]);
-            
-        
-    
-        // -------------------------------------
-        // event(new Registered($user));
-        
-        // Auth::login($user);
-        // $data->save();
-        // return redirect(RouteServiceProvider::HOME);
-        
-        // return response()->json($data);
-    // } else {
-    //     return redirect()->route('/skill/top-select');
-        
-    // }
-
     }
     
     /**
@@ -131,12 +121,13 @@ class SkillController extends Controller
         
         // javascriptからpostデータを取得
         // $selected_month = $_GET;
-        $year_js = substr($selected_month, 0, 4);
-        $month_js = substr($selected_month, 5, 2);
+        // $year_js = substr($selected_month, 0, 4);
+        // $month_js = substr($selected_month, 5, 2);
 
         $skills = learning_data::where('user_id', $id)
-                    ->whereYear('month', $year_js)
-                    ->whereMonth('month', $month_js)
+                    // ->whereYear('month', $year_js)
+                    // ->whereMonth('month', $month_js)
+                    ->where('month', $selected_month)
                     ->get();
 
        if($skills->isEmpty()){

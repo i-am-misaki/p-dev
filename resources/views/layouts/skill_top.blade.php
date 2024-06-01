@@ -15,8 +15,7 @@
 
         
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/js/app.js', 'resources/js/make_select.js'])
-        <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+        @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/js/app.js', 'public/js/make_select.js'])
     </head>
     <body class="font-sans text-gray-900">
         @yield('header')
