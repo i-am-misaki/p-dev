@@ -47,6 +47,7 @@ Route::get('/skill/top-select', [App\Http\Controllers\Portfolio\SkillController:
 Route::get('/skill/add/{section}', [App\Http\Controllers\Portfolio\SkillController::class, 'create']);
 Route::post('/skill/store', [App\Http\Controllers\Portfolio\SkillController::class, 'store']);
 Route::post('/skill/edit', [App\Http\Controllers\Portfolio\SkillController::class, 'edit']);
+Route::post('/skill/destroy', [App\Http\Controllers\Portfolio\SkillController::class, 'destroy']);
 
 
 Route::get('/dashboard', function () {

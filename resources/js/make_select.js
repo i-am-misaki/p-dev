@@ -224,7 +224,6 @@ function SaveStudyHour(skillId, input){
         }
         if(res.error_message){
             alert(res.error_message);
-            errorMessage_learningName.textContent = res.error_message;
         }
     })
     
@@ -237,7 +236,34 @@ function SaveStudyHour(skillId, input){
 
 // learning_data削除
 function DeleteLearningData(skillsId){
-    console.log(1234567890);
+
+    const postData = {
+        learningId: skillsId
+    }
+    
+    fetch('/skill/destroy',{
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify(postData)
+    })
+    .then(response => response.json())
+    .then(res => {
+        // console.log(res);
+        if(res.success_message){
+            showModal(res.success_message);
+        }
+        if(res.error_message){
+            alert(res.error_message);
+        }
+    })
+    
+    .catch (error => {
+        console.log('Fetch error:', error);
+        alert(error);
+    });
 };
 
 

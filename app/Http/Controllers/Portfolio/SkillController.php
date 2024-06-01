@@ -180,8 +180,25 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $user_id = Auth::id();
+
+        try {
+            $learningId = $request->input('learningId');
+
+            $skills = learning_data::where('id', $learningId)
+                        ->where('user_id', $user_id)
+                        ->first();
+            $skills->delete();
+
+            return response()->json(['success_message' => "{$skills->name}を削除しました！"]);
+            // } else {
+            //     return response()->json(['error_message' => "編集を保存できませんでした。"]);
+            // }
+        } catch (Exception $e){
+            Log::error('ERROR UPDATING STUDY HOUR: '. $e->getMessage());
+            return response()->json(['error_message' => 'データの編集中にエラーが発生しました'], 500);
+        }
     }
 }
