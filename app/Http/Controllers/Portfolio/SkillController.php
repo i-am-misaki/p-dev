@@ -100,7 +100,7 @@ class SkillController extends Controller
             }
         } catch (Exception $e){
         //     // Log::error('ERROR STORING SKILL: '. $e->getMessage());
-            return resonse()->json(['e_message' => 'データの追加中にエラーが発生しました'], 500);
+            return response()->json(['e_message' => 'データの追加中にエラーが発生しました'], 500);
         //     // $e_message = 'データの追加中にエラーが発生しました';
         //     // echo json_encode($e_message);
         }
@@ -143,9 +143,30 @@ class SkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    // 学習時間編集
+    public function edit(Request $request)
     {
-        //
+        $user_id = Auth::id();
+
+        try {
+                $learningId = $request->input('learningId');
+                $studyhour = $request->input('studyHour');
+
+                $skills = learning_data::where('id', $learningId)
+                            ->where('user_id', $user_id)
+                            ->first();
+
+                $skills->studyhour = $studyhour;
+                $skills->save();
+
+                return response()->json(['success_message' => "{$skills->name}の学習時間を保存しました！"]);
+                // } else {
+                //     return response()->json(['error_message' => "編集を保存できませんでした。"]);
+                // }
+        } catch (Exception $e){
+            Log::error('ERROR UPDATING STUDY HOUR: '. $e->getMessage());
+            return response()->json(['error_message' => 'データの編集中にエラーが発生しました'], 500);
+        }
     }
 
     /**

@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const section = document.getElementById('section').value;
     const selectedMonth = sessionStorage.getItem('selected_month');
 
+    // inputタグルール確認
     const validationError = validateInputs(studyHour, learningName)
         if(validationError.length > 0){
             displayError(validationError);
@@ -52,16 +53,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 alert(res.e_message);
             }
         })
-        
-            // .then(error_message => {
-            //     return console.log(error_message.json());
-            // })
-            // .then(succsess_message => {
-            //     return console.log(succsess_message.json());
-            // })
-            // .then(e_message => {
-            //     return console.log(e_message.json());
-            // })
         
     
         // const res = await response.json();

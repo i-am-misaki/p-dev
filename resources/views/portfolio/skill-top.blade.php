@@ -87,6 +87,20 @@
             </form>
         </div>
     </div>
+
+    <!-- モーダルウィンドウ -->
+    <div class="layer js-modal flex justify-center items-center h-screen w-screen">
+        <div class="modal_contents flex justify-center item-center h-60 w-1/2 bg-white">
+            <div class="modal_content flex-col w-full">
+                <div class="flex justify-center item-center my-8 w-full">
+                    <h4 id="succcessMessage" class="text-center font-Roboto font-bold text-lg w-64 h-14"></h4>
+                </div>
+                <div class="flex justify-center items-center h-12">
+                    <x-element.a-href :href=" url('/skill/top')" class="backToAdd  w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-element.a-href>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         window.skills = @json($skills);
         window.currentMonth = @json($currentMonth);

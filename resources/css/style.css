@@ -28,7 +28,7 @@
     padding-right: 20px;
     width: 200px;
 }
-#deleteBtn{
+.deleteBtn{
     width: 88px;
     color: white;
     height: 32px;
@@ -39,7 +39,7 @@
     line-height: 16.41px;
 }
 
-#saveBtn{
+.saveBtn{
     width: 158px;
     color: rgba(27, 86, 120, 1);
     height: 32px;

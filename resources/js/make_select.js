@@ -106,23 +106,35 @@ function displayData(data){
         let td3 = document.createElement('td');
         td3.classList.add('p-4');
         let saveBtn = document.createElement('button');
-        saveBtn.id = 'saveBtn';
-        // saveBtn.classList.add('h-8', 'w-40', 'py-2', 'px-4', 'flex', 'items-center', 'justify-center', 'border',  'border-cyan-700', 'bg-white', 'text-cyan-900', 'text-sm', 'rounded')
+        saveBtn.classList.add('saveBtn');
+        saveBtn.id = `saveBtn-${skills.id}`;
+        saveBtn.dataset.id = skills.id;
         saveBtn.textContent = '学習時間を保存する';
+        // 学習時間変更イベントリスナー
+        saveBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            SaveStudyHour(skills.id, input);
+        });
         // 削除
         let formDelete = document.createElement('form');
         let td4 = document.createElement('td');
         td4.id = 'td4';
         let deleteBtn = document.createElement('button');
-        deleteBtn.id = 'deleteBtn';
-        // deleteBtn.classList.add('h-8', 'py-2', 'px-4', 'text-white', 'bg-rose-400', 'flex', 'items-center', 'justify-center', 'text-sm', 'rounded');
+        deleteBtn.classList.add('deleteBtn');
+        deleteBtn.id = `deleteBtn-${skills.id}`;
+        deleteBtn.dataset.id = skills.id;
         deleteBtn.textContent = '削除する';
+        // learning_data削除イベントリスナー
+        deleteBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            DeleteLearningData(skills.id);
+        });
 
         h4.textContent = skills.name;
         input.value = skills.studyhour;
         input.type = 'number';
 
-       
+   
         let table1 = document.getElementById('table1');
         let table2 = document.getElementById('table2');
         let table3 = document.getElementById('table3');
@@ -183,4 +195,57 @@ function displayData(data){
             formDelete.appendChild(deleteBtn);
         }
     });
+}
+
+// 学習時間変更
+function SaveStudyHour(skillId, input){
+
+    const studyHour = input.value; 
+    const postData = {
+        learningId: skillId,
+        studyHour: studyHour
+    };
+    // console.log(postData);
+
+
+    fetch('/skill/edit',{
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify(postData)
+    })
+    .then(response => response.json())
+    .then(res => {
+        // console.log(res);
+        if(res.success_message){
+            showModal(res.success_message);
+        }
+        if(res.error_message){
+            alert(res.error_message);
+            errorMessage_learningName.textContent = res.error_message;
+        }
+    })
+    
+    .catch (error => {
+        console.log('Fetch error:', error);
+        alert(error);
+    });
+};
+
+
+// learning_data削除
+function DeleteLearningData(skillsId){
+    console.log(1234567890);
+};
+
+
+// モーダルウィンドウ表示
+function showModal(message){
+    // document.getElementById('addForm').reset();
+    const modal = document.querySelector('.js-modal');
+    const succcessMessage = document.getElementById('succcessMessage');
+    modal.classList.add('is-open');
+    succcessMessage.textContent = message;
 }
