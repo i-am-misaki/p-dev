@@ -1,6 +1,6 @@
 <x-portfolio.base>
     <x-portfolio.header></x-portfolio.header>
-    <div class="w-full py-20 mb-80">
+    <div class="w-full py-20 mb-10">
         <div class="flex justify-center mx-16">
             
                 <!-- <div class="w-1/2 text-center">
@@ -38,13 +38,18 @@
                 </div>
             </div>
         </div>
+    </div>
         
         <!-- テスト -->
         <!-- <img src="{{ asset('storage/images/cat.png') }}" />
         <img src="{{ asset('storage/images/bg-p-cat.png') }}" />
         <img src="{{ asset('storage/images/pc.png') }}" />
         <img src="{{ asset('images/pc.png') }}" /> -->
-
+        <!-- chartjs  width="100" height="500" -->
+    <div class="h-dvh flex justify-center mb-64 ">
+        <div id="wrapper2" class="w-3/4 h-full flex justify-center">
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
     <x-portfolio.footer-base></x-portfolio.footer-base>
 </x-portfolio.base>
