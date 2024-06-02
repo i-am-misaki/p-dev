@@ -1,6 +1,6 @@
 <x-portfolio.base>
     <x-portfolio.header></x-portfolio.header>
-    <div class="w-full py-20 mb-10">
+    <div class="w-full py-20">
         <div class="flex justify-center mx-16">
             
                 <!-- <div class="w-1/2 text-center">
@@ -46,6 +46,7 @@
         <img src="{{ asset('storage/images/pc.png') }}" />
         <img src="{{ asset('images/pc.png') }}" /> -->
         <!-- chartjs  width="100" height="500" -->
+    <h4 class="text-center mb-4">Chart.js Bar Chart</h4>
     <div class="h-dvh flex justify-center mb-64 ">
         <div id="wrapper2" class="w-3/4 h-full flex justify-center">
             <canvas id="myChart"></canvas>
