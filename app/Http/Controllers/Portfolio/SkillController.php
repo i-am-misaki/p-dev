@@ -25,10 +25,10 @@ class SkillController extends Controller
         // $skills = learning_data::where('user_id', $id)->get();
         $currentMonth = now()->format('Y-m');
         $skills = learning_data::where('user_id', $id)
-                    // ->whereYear('month', now()->year)
-                    // ->whereMonth('month', now()->month)
+                    ->where('month', $currentMonth)
                     ->get();
         
+        // 最新月を表示
         return view('portfolio.skill-top',[
             'skills' =>$skills,
             'currentMonth' => $currentMonth,
@@ -66,10 +66,8 @@ class SkillController extends Controller
         $learningName = $request->input('learningName');
         $studyhour = $request->input('studyHour');
         $section = $request->input('section');
-        // $section = $_POST['section'];
         $selectedMonth = $request->input('selectedMonth');
-        // $selectedMonth = $_POST['selected_month'];
-        
+
         $category = category::where('name', $section)
             ->first();
         
@@ -77,6 +75,7 @@ class SkillController extends Controller
         $exist_skill = learning_data::where('user_id', $id)
             ->where('name', $learningName)
             ->where('category_id', $category->id)
+            ->where('month', $selectedMonth)
             ->get();
         
         try {
@@ -91,12 +90,9 @@ class SkillController extends Controller
                 $learning_data->save();
     
                 return response()->json(['success_message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
-        //         // $succsess_message = "{$category->name} に {$learningName} を{$studyhour}分で追加しました！";
-                // echo json_encode($succsess_message);
+
             } else {
                 return response()->json(['error_message' => "{$learningName}は既に登録されています"]);
-                // $error_message = "{$learningName}は既に登録されています";
-                // echo json_encode($error_message);
             }
         } catch (Exception $e){
         //     // Log::error('ERROR STORING SKILL: '. $e->getMessage());
@@ -180,6 +176,7 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    // learning_data削除
     public function destroy(Request $request)
     {
         $user_id = Auth::id();
