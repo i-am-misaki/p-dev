@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     let selectTag = document.getElementById('tsuki');
     
-    // セレクトボックス作成
     let today = new Date();
     let current_year = today.getFullYear();
     let current_month = today.getMonth()+1;
@@ -9,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
     
     // let current_ym = today.toLocaleDateString("ja-JP", {year: "numeric", month: one_month}).replaceAll('/', '-');
     
+    // セレクトボックス作成
     for( let i = 0; i <= 2; i++){
         let one_ym = current_year + '-' +(current_month - i).toString().padStart(2, '0');
         let option = document.createElement('option');
@@ -23,18 +23,19 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log(skills);
     }
     // let currentSkills = window.currentSkills;
-    // displayData(currentSkills);
 
+    // 月の選択
     selectTag.addEventListener("change", function(){
         let selected_month = selectTag.value;
+        // sessionStorage.setItem('selected_month', selected_month);
         show_month_data(selected_month);
-    });
-
-    function handleAddition(event, href){
-        event.preventDefault();
-        // 選択された月をセッションに保存
-        let selected_month = selectTag.value;
-        sessionStorage.setItem('selected_month', selected_month);
+        });
+        
+        function handleAddition(event, href){
+            event.preventDefault();
+            // 選択された月をセッションに保存
+            let selected_month = selectTag.value;
+            // Storage.setItem('selected_month', selected_month);
 
         window.location.href = href;
     }
@@ -52,8 +53,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
-
+// learning_dataの表示
 function show_month_data(selected_month){
+    // selected_month = sessionStorage.getItem('selected_month');
+    // console.log(selected_month);
     // 非同期処理行う
     let xhr = new XMLHttpRequest();
     // リクエストを初期化
@@ -65,7 +68,7 @@ function show_month_data(selected_month){
         if(xhr.readyState == 4 && xhr.status == 200){
             let data = JSON.parse(xhr.responseText); 
             console.log(data);
-            displayData(data);
+            displayData(data, selected_month);
         } else {
             console.log("error" + xhr.status);
         }
@@ -74,8 +77,11 @@ function show_month_data(selected_month){
     xhr.send();
 }
 
-function displayData(data){
 
+
+
+
+function displayData(data, selected_month){
     ['table1', 'table2', 'table3'].forEach(tableId => {
         let table = document.getElementById(tableId);
         // 見出し以外は削除
@@ -113,7 +119,7 @@ function displayData(data){
         // 学習時間変更イベントリスナー
         saveBtn.addEventListener('click', function(event){
             event.preventDefault();
-            SaveStudyHour(skills.id, input);
+            SaveStudyHour(skills.id, input, selected_month);
         });
         // 削除
         let formDelete = document.createElement('form');
@@ -127,12 +133,13 @@ function displayData(data){
         // learning_data削除イベントリスナー
         deleteBtn.addEventListener('click', function(event){
             event.preventDefault();
-            DeleteLearningData(skills.id);
+            DeleteLearningData(skills.id, selected_month);
         });
 
         h4.textContent = skills.name;
         input.value = skills.studyhour;
         input.type = 'number';
+        input.min = "1";
 
    
         let table1 = document.getElementById('table1');
@@ -197,45 +204,51 @@ function displayData(data){
     });
 }
 
+
 // 学習時間変更
-function SaveStudyHour(skillId, input){
-
+function SaveStudyHour(skillId, input, selected_month){;
     const studyHour = input.value; 
-    const postData = {
-        learningId: skillId,
-        studyHour: studyHour
-    };
-    // console.log(postData);
 
-
-    fetch('/skill/edit',{
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        },
-        body: JSON.stringify(postData)
-    })
-    .then(response => response.json())
-    .then(res => {
-        // console.log(res);
-        if(res.success_message){
-            showModal(res.success_message);
-        }
-        if(res.error_message){
-            alert(res.error_message);
-        }
-    })
+    // if(studyHour < 1){
+        // errorMessage_studyHour.textContent = '学習時間は0以上の数字で入力してください';
+    // } else {
+        const postData = {
+            learningId: skillId,
+            studyHour: studyHour
+        };
+        // console.log(postData);
     
-    .catch (error => {
-        console.log('Fetch error:', error);
-        alert(error);
-    });
+        fetch('/skill/edit',{
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response => response.json())
+        .then(res => {
+            // console.log(res);
+            if(res.success_message){
+                showModal(res.success_message, selected_month);
+            }
+            if(res.error_message){
+                alert(res.error_message);
+            }
+        })
+        
+        .catch (error => {
+            console.log('Fetch error:', error);
+            alert(error);
+        });
+
+    // }
+
 };
 
 
 // learning_data削除
-function DeleteLearningData(skillsId){
+function DeleteLearningData(skillsId, selected_month){
 
     const postData = {
         learningId: skillsId
@@ -253,7 +266,7 @@ function DeleteLearningData(skillsId){
     .then(res => {
         // console.log(res);
         if(res.success_message){
-            showModal(res.success_message);
+            showModal(res.success_message, selected_month);
         }
         if(res.error_message){
             alert(res.error_message);
@@ -268,10 +281,15 @@ function DeleteLearningData(skillsId){
 
 
 // モーダルウィンドウ表示
-function showModal(message){
-    // document.getElementById('addForm').reset();
+function showModal(message, selected_month){
+    console.log(selected_month);
     const modal = document.querySelector('.js-modal');
     const succcessMessage = document.getElementById('succcessMessage');
     modal.classList.add('is-open');
     succcessMessage.textContent = message;
+    const backtoAdd = document.getElementById('backToAdd');
+    backtoAdd.addEventListener('click', function(){
+        show_month_data(selected_month);
+        modal.classList.remove('is-open');
+    })
 }
