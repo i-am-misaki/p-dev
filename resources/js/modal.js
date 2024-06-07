@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // postData.set('section', section);
     // postData.set('selected_month', selectedMonth);
     
+    // learning_data追加
     try {
         // const response = await fetch('/skill/store',{
         await fetch('/skill/store',{
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(){
         .then(res => {
             // console.log(res);
             if(res.success_message){
-                showModal(res.success_message);
+                showModal(res.success_message, selectedMonth);
             }
             if(res.error_message){
                 errorMessage_learningName.textContent = res.error_message;
@@ -109,21 +110,18 @@ function displayError(errors){
             errorMessage_studyHour.textContent = error.message;
         }
     });
-
-    // if (!errors.some(error => error.field === 'learningName')) {
-    //     errorMessage.style.display = 'none';
-    // }
-    // if (!errors.some(error => error.field === 'studyHour')) {
-    //     error_studyhour.style.display = 'none';
-    // }
 }
     // モーダルウィンドウ表示
-    function showModal(message){
-        console.log(message);
+    function showModal(message, selectedMonth){
         document.getElementById('addForm').reset();
         const modal = document.querySelector('.js-modal');
         const succcessMessage = document.getElementById('succcessMessage');
         modal.classList.add('is-open');
         succcessMessage.textContent = message;
+        const backtoAdd = document.getElementById('backToAdd');
+        backtoAdd.addEventListener('click', function(){
+            show_month_data(selectedMonth);
+            modal.classList.remove('is-open');
+        })
     }
 });
