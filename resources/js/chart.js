@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function(){
         ];
 
         // ｙ軸の最大値
-        let max_xAxes = Math.max.apply(null,categoryData);
+        let max_yAxes = Math.max.apply(null,categoryData);
         
         // console.log(backendData_currentMonth_total);
         // console.log(backendData_oneMonthAgo_total);
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function(){
             datasets: [
                 {
                     label: 'バックエンド',
-                    data: [backendData_twoMonthAgo_total, backendData_currentMonth_total, backendData_currentMonth_total],
+                    data: [backendData_twoMonthAgo_total, backendData_oneMonthAgo_total, backendData_currentMonth_total],
                     borderColor : "rgba(54,164,235,0.8)",
                     backgroundColor : "#ffb6c1",
                 },
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     label: 'インフラ',
                     data: [infraData_twoMonthAgo_total, infraData_oneMonthAgo_total, infraData_currentMonth_total],
                     borderColor : "rgba(254,97,132,0.8)",
-                    backgroundColor : "#f5deb3", 
+                    backgroundColor : "#f5deb3",
                 },
             ]
         }
@@ -114,38 +114,17 @@ document.addEventListener("DOMContentLoaded", function(){
             data: data,
             options: {
                 responsive: true,
-                scales: {
-                    x: [{
-                        beginAtZero: true,
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            fontColor: "#daa520",
-                            fontFamily: 'Roboto',
-                            fontSize: 18
-                            },
-                    }],
-                    y: [{
-                        beginAtZero: true,
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            fontColor: "#daa520",
-                            fontFamily: 'Roboto',
-                            fontSize: 18
-                            },
-                        ticks: {  //Y軸の最大値・最小値、目盛りの範囲などを設定する
-                            suggestedMax: max_xAxes,
-                            suggestedMin: 0,
-                            stepSize: 10,
-                            },
-                    }],
-                },
                 maintainAspectRatio: false, // サイズ変更の際に、元のキャンバスのアスペクト比(width / height)を維持します
                 title: {
                     display: true,
-                    text: 'Chart.js Bar Chart'
-                }
+                    // text: 'Chart.js Bar Chart'
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: max_yAxes
+                    }
+                },
             }
         });
         
