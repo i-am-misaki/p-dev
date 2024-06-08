@@ -52,5 +52,9 @@
             <canvas id="myChart"></canvas>
         </div>
     </div>
+    <script>
+        window.skills = @json($skills);
+    </script>
+    <script src="{{ asset('/js/chart.js') }}"></script>
     <x-portfolio.footer-base></x-portfolio.footer-base>
 </x-portfolio.base>
