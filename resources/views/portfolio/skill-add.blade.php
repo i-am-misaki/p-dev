@@ -38,7 +38,8 @@
                     <h4 id="succcessMessage" class="text-center font-Roboto font-bold text-lg w-64 h-14"></h4>
                 </div>
                 <div class="flex justify-center items-center h-12">
-                    <x-portfolio.button id="backToAdd" class="backToAdd  w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-portfolio.button>
+                    <!-- <x-portfolio.button id="backToAdd" class="backToAdd  w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-portfolio.button> -->
+                    <x-element.a-href :href=" route('skill-top') " class="backToAdd h-12 w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-element.a-href>
                 </div>
             </div>
         </div>

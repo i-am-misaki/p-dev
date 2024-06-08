@@ -22,7 +22,7 @@ class SkillController extends Controller
     public function index()
     {
         $id = Auth::id();
-        // $skills = learning_data::where('user_id', $id)->get();
+
         $currentMonth = now()->format('Y-m');
         $skills = learning_data::where('user_id', $id)
                     ->where('month', $currentMonth)
@@ -97,8 +97,6 @@ class SkillController extends Controller
         } catch (Exception $e){
         //     // Log::error('ERROR STORING SKILL: '. $e->getMessage());
             return response()->json(['e_message' => 'データの追加中にエラーが発生しました'], 500);
-        //     // $e_message = 'データの追加中にエラーが発生しました';
-        //     // echo json_encode($e_message);
         }
     }
     
@@ -113,16 +111,10 @@ class SkillController extends Controller
         //     abort(403, 'Unauthrized action.');
         // }
         $selected_month = $request->input('tsuki');
+        // $selected_month = $_POST['selected_month'];
         $id = Auth::id();
-        
-        // javascriptからpostデータを取得
-        // $selected_month = $_GET;
-        // $year_js = substr($selected_month, 0, 4);
-        // $month_js = substr($selected_month, 5, 2);
 
         $skills = learning_data::where('user_id', $id)
-                    // ->whereYear('month', $year_js)
-                    // ->whereMonth('month', $month_js)
                     ->where('month', $selected_month)
                     ->get();
 
@@ -130,9 +122,7 @@ class SkillController extends Controller
         return response()->json(['error' => 'No data found for the selected month']);
        }
         
-
         // header('Content-Type: application/json; charset=UTF-8');
-
         return response()->json($skills);
 
     }
@@ -147,18 +137,22 @@ class SkillController extends Controller
         try {
                 $learningId = $request->input('learningId');
                 $studyhour = $request->input('studyHour');
-
-                $skills = learning_data::where('id', $learningId)
-                            ->where('user_id', $user_id)
-                            ->first();
-
-                $skills->studyhour = $studyhour;
-                $skills->save();
-
-                return response()->json(['success_message' => "{$skills->name}の学習時間を保存しました！"]);
+                // if($studyhour == 0){
+                //     return response()->json(['zero_message' => "学習時間は0以上の数字で入力してください"]);
                 // } else {
-                //     return response()->json(['error_message' => "編集を保存できませんでした。"]);
+                    $skills = learning_data::where('id', $learningId)
+                                ->where('user_id', $user_id)
+                                ->first();
+    
+                    $skills->studyhour = $studyhour;
+                    $skills->save();
+    
+                    return response()->json(['success_message' => "{$skills->name}の学習時間を保存しました！"]);
+                    // } else {
+                    //     return response()->json(['error_message' => "編集を保存できませんでした。"]);
+                    // }
                 // }
+
         } catch (Exception $e){
             Log::error('ERROR UPDATING STUDY HOUR: '. $e->getMessage());
             return response()->json(['error_message' => 'データの編集中にエラーが発生しました'], 500);

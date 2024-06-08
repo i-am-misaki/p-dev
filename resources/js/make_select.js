@@ -27,15 +27,16 @@ document.addEventListener("DOMContentLoaded", function(){
     // 月の選択
     selectTag.addEventListener("change", function(){
         let selected_month = selectTag.value;
-        // sessionStorage.setItem('selected_month', selected_month);
+        sessionStorage.setItem('selected_month', selected_month);
         show_month_data(selected_month);
         });
         
+        // カテゴリ別遷移
         function handleAddition(event, href){
             event.preventDefault();
             // 選択された月をセッションに保存
             let selected_month = selectTag.value;
-            // Storage.setItem('selected_month', selected_month);
+            sessionStorage.setItem('selected_month', selected_month);
 
         window.location.href = href;
     }
@@ -140,6 +141,7 @@ function displayData(data, selected_month){
         input.value = skills.studyhour;
         input.type = 'number';
         input.min = "1";
+        // input.setAttribute = ('required', '');
 
    
         let table1 = document.getElementById('table1');
@@ -282,7 +284,6 @@ function DeleteLearningData(skillsId, selected_month){
 
 // モーダルウィンドウ表示
 function showModal(message, selected_month){
-    console.log(selected_month);
     const modal = document.querySelector('.js-modal');
     const succcessMessage = document.getElementById('succcessMessage');
     modal.classList.add('is-open');

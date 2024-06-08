@@ -2,6 +2,7 @@
 
 // fetch api
 document.addEventListener("DOMContentLoaded", function(){
+    const selectedMonth = sessionStorage.getItem('selected_month');
     const addBtn = document.getElementById('addLearning');
     const errorMessage_learningName = document.getElementById('errorMessage_learningName');
     const errorMessage_studyHour = document.getElementById('errorMessage_studyHour');
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const studyHour = document.getElementById('studyHour').value;
     const learningName = document.getElementById('learningName').value;
     const section = document.getElementById('section').value;
-    const selectedMonth = sessionStorage.getItem('selected_month');
+    
 
     // inputタグルール確認
     const validationError = validateInputs(studyHour, learningName)
@@ -32,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function(){
     
     // learning_data追加
     try {
-        // const response = await fetch('/skill/store',{
         await fetch('/skill/store',{
             method: 'POST',
             headers: { 
@@ -54,24 +54,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 alert(res.e_message);
             }
         })
-        
-    
-        // const res = await response.json();
-        // if(response.text().ok){
-        //     if(res.message){
-        //         // setTimeout(showModal(res.message), 10000);
-        //         showModal(res.message);
-        //     } else if(res.error_message){
-        //         let learningError = document.getElementById('errorMessage');
-        //         learningError.textContent = res.error_message;
-        //     } else if(res.e_message){
-        //         alert(res.e_message);
-        //     }
-        // } else {
-        //     console.log(error);
-        //     alert('response error :' , error);
-        // }
-        
         
     } catch (error){
         console.log('Fetch error:', error);
@@ -111,17 +93,17 @@ function displayError(errors){
         }
     });
 }
-    // モーダルウィンドウ表示
-    function showModal(message, selectedMonth){
-        document.getElementById('addForm').reset();
-        const modal = document.querySelector('.js-modal');
-        const succcessMessage = document.getElementById('succcessMessage');
-        modal.classList.add('is-open');
-        succcessMessage.textContent = message;
-        const backtoAdd = document.getElementById('backToAdd');
-        backtoAdd.addEventListener('click', function(){
-            show_month_data(selectedMonth);
-            modal.classList.remove('is-open');
-        })
-    }
+// モーダルウィンドウ表示
+function showModal(message, selectedMonth){
+    document.getElementById('addForm').reset();
+    const modal = document.querySelector('.js-modal');
+    const succcessMessage = document.getElementById('succcessMessage');
+    modal.classList.add('is-open');
+    succcessMessage.textContent = message;
+    const backtoAdd = document.getElementById('backToAdd');
+    backtoAdd.addEventListener('click', function(){
+        show_month_data(selectedMonth);
+        modal.classList.remove('is-open');
+    })
+}
 });
