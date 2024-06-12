@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     if(window.skills){
         displayData(window.skills);
-        console.log(skills);
+        // console.log(skills);
+        // console.log(typeof(skills));
     }
     // let currentSkills = window.currentSkills;
 
@@ -38,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function(){
             let selected_month = selectTag.value;
             sessionStorage.setItem('selected_month', selected_month);
 
-        window.location.href = href;
-    }
+            window.location.href = href;
+        }
 
     document.getElementById('addition1').addEventListener("click", function(event){
         handleAddition(event, this.href);
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // learning_dataの表示
 function show_month_data(selected_month){
     // selected_month = sessionStorage.getItem('selected_month');
-    // console.log(selected_month);
+
     // 非同期処理行う
     let xhr = new XMLHttpRequest();
     // リクエストを初期化
@@ -67,9 +68,8 @@ function show_month_data(selected_month){
     // xhr.responseType = 'json';
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            let data = JSON.parse(xhr.responseText); 
-            console.log(data);
-            displayData(data, selected_month);
+            let skilldatas = JSON.parse(xhr.responseText); 
+            displayData(skilldatas, selected_month);
         } else {
             console.log("error" + xhr.status);
         }
@@ -79,10 +79,8 @@ function show_month_data(selected_month){
 }
 
 
-
-
-
-function displayData(data, selected_month){
+// selected_monthのlearning_data一覧表示
+function displayData(skilldatas, selected_month){
     ['table1', 'table2', 'table3'].forEach(tableId => {
         let table = document.getElementById(tableId);
         // 見出し以外は削除
@@ -91,7 +89,9 @@ function displayData(data, selected_month){
         }
     });
 
-    data.forEach(skills => {
+    // console.log(typeof(data));
+    // Object.entries(data);
+    skilldatas.forEach(skills => {
         let tr = document.createElement('tr');
         tr.classList.add('border', 'shadow-sm', 'shadow-slate-300');
         // 項目名
@@ -251,7 +251,8 @@ function SaveStudyHour(skillId, input, selected_month){;
 
 // learning_data削除
 function DeleteLearningData(skillsId, selected_month){
-
+    selected_month = sessionStorage.getItem('selected_month');
+    
     const postData = {
         learningId: skillsId
     }
@@ -268,6 +269,7 @@ function DeleteLearningData(skillsId, selected_month){
     .then(res => {
         // console.log(res);
         if(res.success_message){
+            console.log(selected_month);
             showModal(res.success_message, selected_month);
         }
         if(res.error_message){
@@ -290,6 +292,7 @@ function showModal(message, selected_month){
     succcessMessage.textContent = message;
     const backtoAdd = document.getElementById('backToAdd');
     backtoAdd.addEventListener('click', function(){
+        console.log(selected_month);
         show_month_data(selected_month);
         modal.classList.remove('is-open');
     })

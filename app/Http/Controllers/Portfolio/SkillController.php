@@ -111,7 +111,6 @@ class SkillController extends Controller
         //     abort(403, 'Unauthrized action.');
         // }
         $selected_month = $request->input('tsuki');
-        // $selected_month = $_POST['selected_month'];
         $id = Auth::id();
 
         $skills = learning_data::where('user_id', $id)
@@ -137,9 +136,7 @@ class SkillController extends Controller
         try {
                 $learningId = $request->input('learningId');
                 $studyhour = $request->input('studyHour');
-                // if($studyhour == 0){
-                //     return response()->json(['zero_message' => "学習時間は0以上の数字で入力してください"]);
-                // } else {
+                
                     $skills = learning_data::where('id', $learningId)
                                 ->where('user_id', $user_id)
                                 ->first();
