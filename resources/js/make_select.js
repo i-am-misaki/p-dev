@@ -209,6 +209,7 @@ function displayData(skilldatas, selected_month){
 
 // 学習時間変更
 function SaveStudyHour(skillId, input, selected_month){;
+    selected_month = sessionStorage.getItem('selected_month');
     const studyHour = input.value; 
 
     // if(studyHour < 1){
