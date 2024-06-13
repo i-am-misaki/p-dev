@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", function(){
     let today = new Date();
     let current_year = today.getFullYear();
     let current_month = today.getMonth()+1;
-    // let current_ym = current_year + '-0' + current_month;
+    let current_ym = current_year + '-0' + current_month;
     
+    let selected_month = current_ym; 
     // let current_ym = today.toLocaleDateString("ja-JP", {year: "numeric", month: one_month}).replaceAll('/', '-');
     
     // セレクトボックス作成
@@ -16,29 +17,27 @@ document.addEventListener("DOMContentLoaded", function(){
         option.setAttribute("value", one_ym);
         option.appendChild(optionText);
         selectTag.appendChild(option);
-    }
-
+        // sessionStorage.setItem('selected_month', selected_month);
+        }
+        
+       
     if(window.skills){
-        displayData(window.skills);
-        // console.log(skills);
-        // console.log(typeof(skills));
+        displayData(window.skills, selected_month);
     }
     // let currentSkills = window.currentSkills;
 
     // 月の選択
     selectTag.addEventListener("change", function(){
         let selected_month = selectTag.value;
+        // 選択された月をセッションに保存
         sessionStorage.setItem('selected_month', selected_month);
+        console.log('setstorage' + selected_month);
         show_month_data(selected_month);
         });
         
         // カテゴリ別遷移
         function handleAddition(event, href){
             event.preventDefault();
-            // 選択された月をセッションに保存
-            let selected_month = selectTag.value;
-            sessionStorage.setItem('selected_month', selected_month);
-
             window.location.href = href;
         }
 
@@ -57,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 // learning_dataの表示
 function show_month_data(selected_month){
-    // selected_month = sessionStorage.getItem('selected_month');
 
     // 非同期処理行う
     let xhr = new XMLHttpRequest();
@@ -89,8 +87,6 @@ function displayData(skilldatas, selected_month){
         }
     });
 
-    // console.log(typeof(data));
-    // Object.entries(data);
     skilldatas.forEach(skills => {
         let tr = document.createElement('tr');
         tr.classList.add('border', 'shadow-sm', 'shadow-slate-300');
@@ -140,7 +136,7 @@ function displayData(skilldatas, selected_month){
         h4.textContent = skills.name;
         input.value = skills.studyhour;
         input.type = 'number';
-        input.min = "1";
+        input.min = 1;
         // input.setAttribute = ('required', '');
 
    
@@ -208,13 +204,15 @@ function displayData(skilldatas, selected_month){
 
 
 // 学習時間変更
-function SaveStudyHour(skillId, input, selected_month){;
+function SaveStudyHour(skillId, input, selected_month){
     selected_month = sessionStorage.getItem('selected_month');
     const studyHour = input.value; 
 
-    // if(studyHour < 1){
+    if(studyHour < 1){
+        // saveBtn.disable = true
         // errorMessage_studyHour.textContent = '学習時間は0以上の数字で入力してください';
-    // } else {
+        alert('学習時間は0以上の数字で入力してください')
+    } else {
         const postData = {
             learningId: skillId,
             studyHour: studyHour
@@ -245,7 +243,7 @@ function SaveStudyHour(skillId, input, selected_month){;
             alert(error);
         });
 
-    // }
+    }
 
 };
 

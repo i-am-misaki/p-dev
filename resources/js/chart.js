@@ -122,10 +122,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 100,
                         min: 0,
                         // メモリを決定するために使用されるデータの最大値
-                        suggestedMax: max_yAxes,
+                        suggestedMax: 100,
                         ticks: {
                             stepSize: 10
                         }
