@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function(){
     selectTag.addEventListener("change", function(){
         let selected_month = selectTag.value;
         // 選択された月をセッションに保存
-        sessionStorage.setItem('selected_month', selected_month);
-        console.log('setstorage' + selected_month);
+        // sessionStorage.setItem('selected_month', selected_month);
+        // console.log('setstorage' + selected_month);
         show_month_data(selected_month);
         });
         
@@ -205,7 +205,7 @@ function displayData(skilldatas, selected_month){
 
 // 学習時間変更
 function SaveStudyHour(skillId, input, selected_month){
-    selected_month = sessionStorage.getItem('selected_month');
+    // selected_month = sessionStorage.getItem('selected_month');
     const studyHour = input.value; 
 
     if(studyHour < 1){
@@ -250,7 +250,7 @@ function SaveStudyHour(skillId, input, selected_month){
 
 // learning_data削除
 function DeleteLearningData(skillsId, selected_month){
-    selected_month = sessionStorage.getItem('selected_month');
+    // selected_month = sessionStorage.getItem('selected_month');
     
     const postData = {
         learningId: skillsId
