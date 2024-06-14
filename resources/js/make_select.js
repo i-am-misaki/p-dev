@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
     selectTag.addEventListener("change", function(){
         let selected_month = selectTag.value;
         // 選択された月をセッションに保存
-        // sessionStorage.setItem('selected_month', selected_month);
+        sessionStorage.setItem('selected_month', selected_month);
         // console.log('setstorage' + selected_month);
         show_month_data(selected_month);
         });
@@ -116,6 +116,9 @@ function displayData(skilldatas, selected_month){
         // 学習時間変更イベントリスナー
         saveBtn.addEventListener('click', function(event){
             event.preventDefault();
+            // selected_month = sessionStorage.getItem('selected_month');
+            console.log("call savestudyhour");
+            console.log(selected_month);
             SaveStudyHour(skills.id, input, selected_month);
         });
         // 削除
@@ -130,6 +133,8 @@ function displayData(skilldatas, selected_month){
         // learning_data削除イベントリスナー
         deleteBtn.addEventListener('click', function(event){
             event.preventDefault();
+            // selected_month = sessionStorage.getItem('selected_month');
+            
             DeleteLearningData(skills.id, selected_month);
         });
 
@@ -137,7 +142,6 @@ function displayData(skilldatas, selected_month){
         input.value = skills.studyhour;
         input.type = 'number';
         input.min = 1;
-        // input.setAttribute = ('required', '');
 
    
         let table1 = document.getElementById('table1');
@@ -205,7 +209,8 @@ function displayData(skilldatas, selected_month){
 
 // 学習時間変更
 function SaveStudyHour(skillId, input, selected_month){
-    // selected_month = sessionStorage.getItem('selected_month');
+    console.log("function savestudyhour");
+    console.log(selected_month);
     const studyHour = input.value; 
 
     if(studyHour < 1){
@@ -231,6 +236,8 @@ function SaveStudyHour(skillId, input, selected_month){
         .then(res => {
             // console.log(res);
             if(res.success_message){
+                console.log("call showmodal");
+                console.log(selected_month);
                 showModal(res.success_message, selected_month);
             }
             if(res.error_message){
@@ -250,7 +257,6 @@ function SaveStudyHour(skillId, input, selected_month){
 
 // learning_data削除
 function DeleteLearningData(skillsId, selected_month){
-    // selected_month = sessionStorage.getItem('selected_month');
     
     const postData = {
         learningId: skillsId
@@ -285,13 +291,17 @@ function DeleteLearningData(skillsId, selected_month){
 
 // モーダルウィンドウ表示
 function showModal(message, selected_month){
+    console.log("showmodal");
+    console.log(selected_month);
     const modal = document.querySelector('.js-modal');
     const succcessMessage = document.getElementById('succcessMessage');
     modal.classList.add('is-open');
     succcessMessage.textContent = message;
     const backtoAdd = document.getElementById('backToAdd');
     backtoAdd.addEventListener('click', function(){
-        console.log(selected_month);
+        selected_month = sessionStorage.getItem('selected_month');
+        // console.log("after sessionstorage");
+        // console.log(selected_month);
         show_month_data(selected_month);
         modal.classList.remove('is-open');
     })
