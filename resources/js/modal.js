@@ -2,7 +2,11 @@
 
 // fetch api
 document.addEventListener("DOMContentLoaded", function(){
-    const selectedMonth = sessionStorage.getItem('selected_month');
+    const selected_month = sessionStorage.getItem('selected_month');
+    // console.log("domcontentloaded");
+    // console.log(selected_month);
+    console.log("sessionstorage");
+    console.log(selected_month);
     const addBtn = document.getElementById('addLearning');
     const errorMessage_learningName = document.getElementById('errorMessage_learningName');
     const errorMessage_studyHour = document.getElementById('errorMessage_studyHour');
@@ -21,18 +25,22 @@ document.addEventListener("DOMContentLoaded", function(){
             return;
         }
     
-    const postData = {
-        studyHour: studyHour,
-        learningName: learningName,
-        section: section,
-        selectedMonth: selectedMonth,
-    }
+    
     // const postData = new FormData;
     // postData.set('section', section);
     // postData.set('selected_month', selectedMonth);
     
     // learning_data追加
     try {
+        console.log("try fetch");
+        console.log(selected_month);
+        const postData = {
+            studyHour: studyHour,
+            learningName: learningName,
+            section: section,
+            selectedMonth: selected_month,
+        }
+
         await fetch('/skill/store',{
             method: 'POST',
             headers: { 
@@ -45,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function(){
         .then(res => {
             // console.log(res);
             if(res.success_message){
-                showModal(res.success_message, selectedMonth);
+                // showModal(res.success_message, selectedMonth);
+                showModal(res.success_message);
             }
             if(res.error_message){
                 errorMessage_learningName.textContent = res.error_message;
@@ -94,7 +103,9 @@ function displayError(errors){
     });
 }
 // モーダルウィンドウ表示
-function showModal(message, selectedMonth){
+function showModal(message){
+    console.log("showmodal");
+    console.log(selected_month);
     document.getElementById('addForm').reset();
     const modal = document.querySelector('.js-modal');
     const succcessMessage = document.getElementById('succcessMessage');
@@ -102,7 +113,9 @@ function showModal(message, selectedMonth){
     succcessMessage.textContent = message;
     const backtoAdd = document.getElementById('backToAdd');
     backtoAdd.addEventListener('click', function(){
-        show_month_data(selectedMonth);
+        // show_month_data(selectedMonth);
+        console.log("backtoadd eventlistener");
+        console.log(selected_month);
         modal.classList.remove('is-open');
     })
 }

@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let current_ym = current_year + '-0' + current_month;
     
     let selected_month = current_ym; 
+    sessionStorage.setItem('selected_month', selected_month);
     // let current_ym = today.toLocaleDateString("ja-JP", {year: "numeric", month: one_month}).replaceAll('/', '-');
     
     // セレクトボックス作成
@@ -117,8 +118,8 @@ function displayData(skilldatas, selected_month){
         saveBtn.addEventListener('click', function(event){
             event.preventDefault();
             // selected_month = sessionStorage.getItem('selected_month');
-            console.log("call savestudyhour");
-            console.log(selected_month);
+            // console.log("call savestudyhour");
+            // console.log(selected_month);
             SaveStudyHour(skills.id, input, selected_month);
         });
         // 削除
@@ -209,8 +210,8 @@ function displayData(skilldatas, selected_month){
 
 // 学習時間変更
 function SaveStudyHour(skillId, input, selected_month){
-    console.log("function savestudyhour");
-    console.log(selected_month);
+    // console.log("function savestudyhour");
+    // console.log(selected_month);
     const studyHour = input.value; 
 
     if(studyHour < 1){
@@ -236,8 +237,8 @@ function SaveStudyHour(skillId, input, selected_month){
         .then(res => {
             // console.log(res);
             if(res.success_message){
-                console.log("call showmodal");
-                console.log(selected_month);
+                // console.log("call showmodal");
+                // console.log(selected_month);
                 showModal(res.success_message, selected_month);
             }
             if(res.error_message){
@@ -274,7 +275,7 @@ function DeleteLearningData(skillsId, selected_month){
     .then(res => {
         // console.log(res);
         if(res.success_message){
-            console.log(selected_month);
+            // console.log(selected_month);
             showModal(res.success_message, selected_month);
         }
         if(res.error_message){
@@ -291,8 +292,8 @@ function DeleteLearningData(skillsId, selected_month){
 
 // モーダルウィンドウ表示
 function showModal(message, selected_month){
-    console.log("showmodal");
-    console.log(selected_month);
+    // console.log("showmodal");
+    // console.log(selected_month);
     const modal = document.querySelector('.js-modal');
     const succcessMessage = document.getElementById('succcessMessage');
     modal.classList.add('is-open');
