@@ -76,7 +76,7 @@ function validateInputs(studyHour, learningName){
         errors.push({ field: 'learningName', message: '項目名は必ず入力してください'});
         // errorMessage.textContent = '項目名は必ず入力してください';
     }
-    if(learningName.length >= 50){
+    if(learningName.length >= 51){
         errors.push({ field: 'learningName', message: '項目名は50文字以内で入力してください'});
         // errorMessage.textContent = '項目名は50文字以内で入力してください';
     }
