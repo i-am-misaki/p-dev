@@ -28,7 +28,7 @@
                 </button> -->
             </div>
             <div class="mt-12 flex justify-center">
-                <x-portfolio.submit_button>自己紹介を確定する</x-portfolio.submit_button>
+                <x-portfolio.submit_button class="text-white">自己紹介を確定する</x-portfolio.submit_button>
             </div>
         </form>
     </div>
