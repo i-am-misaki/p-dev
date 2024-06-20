@@ -93,11 +93,11 @@ function displayData(skilldatas, selected_month){
         tr.classList.add('border', 'shadow-sm', 'shadow-slate-300');
         // 項目名
         let td1 = document.createElement('td');
-        td1.classList.add('w-60', 'h-12', 'py-4', 'pl-4', 'pr-10');
+        td1.classList.add('w-60', 'h-12', 'pl-4', 'pr-10'); // , 'py-4'
         let div1 = document.createElement('div');
-        div1.classList.add('w-full', 'h-5');
+        div1.classList.add('w-full');
         let h4 = document.createElement('h4');
-        h4.classList.add('h-5', 'w-10', 'tracking-widest', 'font-Roboto', 'font-normal', 'text-sm');
+        h4.classList.add('text-middle', 'w-48', 'font-Roboto', 'font-normal', 'text-sm', 'break-all'); //'w-10', 'tracking-widest',  
         // 学習時間
         let td2 = document.createElement('td');
         td2.classList.add('w-60', 'h-16', 'p-4');

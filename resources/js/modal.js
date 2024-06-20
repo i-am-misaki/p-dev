@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function(){
     
     // learning_data追加
     try {
-        console.log("try fetch");
-        console.log(selected_month);
+        // console.log("try fetch");
+        // console.log(selected_month);
         const postData = {
             studyHour: studyHour,
             learningName: learningName,
