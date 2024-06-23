@@ -39,7 +39,8 @@
                 </div>
                 <div class="flex justify-center items-center h-12">
                     <!-- <x-portfolio.button id="backToAdd" class="backToAdd  w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-portfolio.button> -->
-                    <x-element.a-href :href=" route('skill-top') " class="backToAdd h-12 w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-element.a-href>
+                    <!-- <x-element.a-href :href=" url('/skill/top-select') " class="backToAdd h-12 w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-element.a-href> -->
+                    <x-element.a-href href="" id="backToAdd" class="h-12 w-48 py-4 px-10 rounded text-center font-normal font-Roboto">{{ __('編集に戻る') }}</x-element.a-href>
                 </div>
             </div>
         </div>

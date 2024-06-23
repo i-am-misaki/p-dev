@@ -27,13 +27,13 @@ class SkillController extends Controller
         $skills = learning_data::where('user_id', $id)
                     ->where('month', $currentMonth)
                     ->get();
-        
+
         // 最新月を表示
         return view('portfolio.skill-top',[
             'skills' =>$skills,
             'currentMonth' => $currentMonth,
         ]
-            
+
         );
         // if($skills->isEmpty()){
         //     return response()->json(['error' => 'No data found for the selected month']);
@@ -50,7 +50,7 @@ class SkillController extends Controller
     {
         // dd($section);
 
-        return view('portfolio.skill-add', 
+        return view('portfolio.skill-add',
             ['section' => $section]);
     }
 
@@ -60,9 +60,9 @@ class SkillController extends Controller
     // 新しく項目、学習時間追加
     public function store(Request $request)
     {
-   
+
         $id = Auth::id();
-        
+
         $learningName = $request->input('learningName');
         $studyhour = $request->input('studyHour');
         $section = $request->input('section');
@@ -70,14 +70,14 @@ class SkillController extends Controller
 
         $category = category::where('name', $section)
             ->first();
-        
+
         // learning_dataに同じnameが存在するか確認
         $exist_skill = learning_data::where('user_id', $id)
             ->where('name', $learningName)
             ->where('category_id', $category->id)
             ->where('month', $selectedMonth)
             ->get();
-        
+
         try {
             // learning_dataのname有無判定
             if($exist_skill->isEmpty()){
@@ -88,7 +88,7 @@ class SkillController extends Controller
                 $learning_data->month = $selectedMonth;
                 $learning_data->category_id = $category->id;
                 $learning_data->save();
-    
+
                 return response()->json(['success_message' => "{$category->name} に {$learningName} を{$studyhour}分で追加しました！"]);
 
             } else {
@@ -99,14 +99,14 @@ class SkillController extends Controller
             return response()->json(['e_message' => 'データの追加中にエラーが発生しました'], 500);
         }
     }
-    
+
     /**
      * Display the specified resource.
      */
     // 非同期処理を使って月選択後、その月のデータを表示
     public function show(Request $request)
     {
-        
+
         // if($id !== Auth::id()){
         //     abort(403, 'Unauthrized action.');
         // }
@@ -120,7 +120,7 @@ class SkillController extends Controller
        if($skills->isEmpty()){
         return response()->json(['error' => 'No data found for the selected month']);
        }
-        
+
         // header('Content-Type: application/json; charset=UTF-8');
         return response()->json($skills);
 
@@ -136,14 +136,14 @@ class SkillController extends Controller
         try {
                 $learningId = $request->input('learningId');
                 $studyhour = $request->input('studyHour');
-                
+
                     $skills = learning_data::where('id', $learningId)
                                 ->where('user_id', $user_id)
                                 ->first();
-    
+
                     $skills->studyhour = $studyhour;
                     $skills->save();
-    
+
                     return response()->json(['success_message' => "{$skills->name}の学習時間を保存しました！"]);
                     // } else {
                     //     return response()->json(['error_message' => "編集を保存できませんでした。"]);
@@ -159,9 +159,21 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    // 学習項目・時間追加後、画面遷移
+    public function update($selected_month)
     {
-        //
+
+        // dd($selected_month);
+        $id = Auth::id();
+        $skills = learning_data::where('user_id', $id)
+                    ->where('month', $selected_month)
+                    ->get();
+
+        return view('portfolio.skill-top',[
+            'skills' =>$skills,
+            'currentMonth' => $selected_month,
+            ]
+        );
     }
 
     /**

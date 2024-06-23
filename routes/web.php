@@ -44,6 +44,7 @@ Route::get('/skill/top', [App\Http\Controllers\Portfolio\SkillController::class,
     ->name('skill-top');
 
 Route::get('/skill/top-select', [App\Http\Controllers\Portfolio\SkillController::class, 'show']);
+Route::get('/skill/top-select/{selected_month}', [App\Http\Controllers\Portfolio\SkillController::class, 'update']);
 Route::get('/skill/add/{section}', [App\Http\Controllers\Portfolio\SkillController::class, 'create']);
 Route::post('/skill/store', [App\Http\Controllers\Portfolio\SkillController::class, 'store']);
 Route::post('/skill/edit', [App\Http\Controllers\Portfolio\SkillController::class, 'edit']);

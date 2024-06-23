@@ -16,20 +16,15 @@ document.addEventListener("DOMContentLoaded", function(){
     const studyHour = document.getElementById('studyHour').value;
     const learningName = document.getElementById('learningName').value;
     const section = document.getElementById('section').value;
-    
-
     // inputタグルール確認
     const validationError = validateInputs(studyHour, learningName)
         if(validationError.length > 0){
             displayError(validationError);
             return;
         }
-    
-    
     // const postData = new FormData;
     // postData.set('section', section);
     // postData.set('selected_month', selectedMonth);
-    
     // learning_data追加
     try {
         // console.log("try fetch");
@@ -43,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         await fetch('/skill/store',{
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             },
@@ -54,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(){
             // console.log(res);
             if(res.success_message){
                 // showModal(res.success_message, selectedMonth);
-                showModal(res.success_message);
+                showModal(res.success_message, selected_month);
             }
             if(res.error_message){
                 errorMessage_learningName.textContent = res.error_message;
@@ -63,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 alert(res.e_message);
             }
         })
-        
     } catch (error){
         console.log('Fetch error:', error);
     }
@@ -102,8 +96,11 @@ function displayError(errors){
         }
     });
 }
+});
+
 // モーダルウィンドウ表示
 function showModal(message){
+    const selected_month = sessionStorage.getItem('selected_month');
     console.log("showmodal");
     console.log(selected_month);
     document.getElementById('addForm').reset();
@@ -113,10 +110,10 @@ function showModal(message){
     succcessMessage.textContent = message;
     const backtoAdd = document.getElementById('backToAdd');
     backtoAdd.addEventListener('click', function(){
-        // show_month_data(selectedMonth);
         console.log("backtoadd eventlistener");
         console.log(selected_month);
         modal.classList.remove('is-open');
+        backtoAdd.href = '/skill/top-select/' + selected_month;
+        // show_month_data(selected_month);
     })
 }
-});

@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", function(){
     let selectTag = document.getElementById('tsuki');
-    
+
     let today = new Date();
     let current_year = today.getFullYear();
     let current_month = today.getMonth()+1;
     let current_ym = current_year + '-0' + current_month;
-    
-    let selected_month = current_ym; 
-    sessionStorage.setItem('selected_month', selected_month);
+
+    let selected_month = current_ym;
+    // sessionStorage.setItem('selected_month', selected_month);
+
     // let current_ym = today.toLocaleDateString("ja-JP", {year: "numeric", month: one_month}).replaceAll('/', '-');
-    
+
     // セレクトボックス作成
     for( let i = 0; i <= 2; i++){
         let one_ym = current_year + '-' +(current_month - i).toString().padStart(2, '0');
@@ -20,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function(){
         selectTag.appendChild(option);
         // sessionStorage.setItem('selected_month', selected_month);
         }
-        
-       
+
+
     if(window.skills){
         displayData(window.skills, selected_month);
     }
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(){
         // console.log('setstorage' + selected_month);
         show_month_data(selected_month);
         });
-        
+
         // カテゴリ別遷移
         function handleAddition(event, href){
             event.preventDefault();
@@ -67,7 +68,7 @@ function show_month_data(selected_month){
     // xhr.responseType = 'json';
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            let skilldatas = JSON.parse(xhr.responseText); 
+            let skilldatas = JSON.parse(xhr.responseText);
             displayData(skilldatas, selected_month);
         } else {
             console.log("error" + xhr.status);
@@ -97,7 +98,7 @@ function displayData(skilldatas, selected_month){
         let div1 = document.createElement('div');
         div1.classList.add('w-full');
         let h4 = document.createElement('h4');
-        h4.classList.add('text-middle', 'w-48', 'font-Roboto', 'font-normal', 'text-sm', 'break-all'); //'w-10', 'tracking-widest',  
+        h4.classList.add('text-middle', 'w-48', 'font-Roboto', 'font-normal', 'text-sm', 'break-all'); //'w-10', 'tracking-widest',
         // 学習時間
         let td2 = document.createElement('td');
         td2.classList.add('w-60', 'h-16', 'p-4');
@@ -135,7 +136,7 @@ function displayData(skilldatas, selected_month){
         deleteBtn.addEventListener('click', function(event){
             event.preventDefault();
             // selected_month = sessionStorage.getItem('selected_month');
-            
+
             DeleteLearningData(skills.id, selected_month);
         });
 
@@ -144,7 +145,7 @@ function displayData(skilldatas, selected_month){
         input.type = 'number';
         input.min = 1;
 
-   
+
         let table1 = document.getElementById('table1');
         let table2 = document.getElementById('table2');
         let table3 = document.getElementById('table3');
@@ -212,7 +213,7 @@ function displayData(skilldatas, selected_month){
 function SaveStudyHour(skillId, input, selected_month){
     // console.log("function savestudyhour");
     // console.log(selected_month);
-    const studyHour = input.value; 
+    const studyHour = input.value;
 
     if(studyHour < 1){
         // saveBtn.disable = true
@@ -224,10 +225,10 @@ function SaveStudyHour(skillId, input, selected_month){
             studyHour: studyHour
         };
         // console.log(postData);
-    
+
         fetch('/skill/edit',{
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             },
@@ -245,7 +246,7 @@ function SaveStudyHour(skillId, input, selected_month){
                 alert(res.error_message);
             }
         })
-        
+
         .catch (error => {
             console.log('Fetch error:', error);
             alert(error);
@@ -258,14 +259,14 @@ function SaveStudyHour(skillId, input, selected_month){
 
 // learning_data削除
 function DeleteLearningData(skillsId, selected_month){
-    
+
     const postData = {
         learningId: skillsId
     }
-    
+
     fetch('/skill/destroy',{
         method: 'POST',
-        headers: { 
+        headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         },
@@ -282,7 +283,7 @@ function DeleteLearningData(skillsId, selected_month){
             alert(res.error_message);
         }
     })
-    
+
     .catch (error => {
         console.log('Fetch error:', error);
         alert(error);
