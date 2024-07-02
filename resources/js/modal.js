@@ -1,4 +1,3 @@
-// const { errorMessages } = require("vue/compiler-sfc");
 
 // fetch api
 document.addEventListener("DOMContentLoaded", function(){

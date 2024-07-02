@@ -1,4 +1,4 @@
-@extends('layouts.skill_top')
+@extends('layouts.skill_added')
 @section('header')
     <x-portfolio.header_sec></x-portfolio.header_sec>
 @endsection
@@ -109,10 +109,11 @@
     <script>
         window.skills = @json($skills);
         window.currentMonth = @json($currentMonth);
-        // window.oneMonthAgo = @json($oneMonthAgo);
-        // window.twoMonthAgo = @json($twoMonthAgo);
+        window.oneMonthAgo = @json($oneMonthAgo);
+        window.twoMonthAgo = @json($twoMonthAgo);
+        window.selected_month = @json($selected_month);
     </script>
-    <script src="{{ asset('/js/make_select.js') }}"></script>
+    <script src="{{ asset('/js/added.js') }}"></script>
 @endsection
 
 @section('footer')

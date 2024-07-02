@@ -6,13 +6,14 @@ document.addEventListener("DOMContentLoaded", function(){
     // console.log(window.currentMonth);
 
     let today = new Date();
-    let current_year = today.getFullYear();
-    let current_month = today.getMonth()+1;
-    let current_ym = current_year + '-0' + current_month;
+    // let current_year = today.getFullYear();
+    // let current_month = today.getMonth()+1;
+    // let current_ym = current_year + '-0' + current_month;
 
-    let selected_month = current_ym;
+    let selected_month = window.selected_month;
 
-    // console.log(selected_month);
+
+    console.log('added' + selected_month);
 
     // 今月
     let current = document.getElementById('0');
@@ -24,30 +25,21 @@ document.addEventListener("DOMContentLoaded", function(){
     let twoM = document.getElementById('2');
     twoM.textContent = today.getMonth()-1 + '月';
 
-    // sessionStorage.setItem('selected_month', selected_month);
+    // let selectTag = document.getElementById('tsuki');
+    // let selectTagOptions = selectTag.options;
 
-    // let current_ym = today.toLocaleDateString("ja-JP", {year: "numeric", month: one_month}).replaceAll('/', '-');
-
-    // セレクトボックス作成
-    // for( let i = 0; i <= 2; i++){
-    //     let one_ym = current_year + '-' +(current_month - i).toString().padStart(2, '0');
-    //     let option = document.createElement('option');
-    //     let optionText = document.createTextNode((current_month - i) + "月");
-    //     option.id = String(i);
-    //     option.setAttribute("value", one_ym);
-    //     option.appendChild(optionText);
-    //     selectTag.appendChild(option);
-    //     // sessionStorage.setItem('selected_month', current_ym);
+    // for(let i = 0; i > selectTagOptions.length; i++){
+    //     console.log(selectTagOptions[i].value);
+    //     if(selectTagOptions[i].value == selected_month){
+    //         selectTagOptions[i].selected = true;
+    //     }
     // }
 
 
     if(window.skills){
-        // let selected_month = window.currentMonth;
-        // console.log(selected_month);
-        // selected_month = sessionStorage.getItem('selected_month');
         displayData(window.skills, selected_month);
     }
-    // let currentSkills = window.currentSkills;
+
 
     // 月の選択
     selectTag.addEventListener("change", function(){
@@ -74,6 +66,8 @@ document.addEventListener("DOMContentLoaded", function(){
         handleAddition(event, this.href);
     })
 });
+
+
 
 
 
@@ -116,9 +110,9 @@ let selectTag_options = selectTag.options;
 
 // selected_monthのlearning_data一覧表示
 function displayData(skilldatas, selected_month){
-    console.log('displayData');
-    console.log(selected_month);
-    console.log(selectTag.value);
+    // console.log('displayData');
+    // console.log(selected_month);
+    // console.log(selectTag.value);
     for(let i = 0; i < selectTag.options.length; i++){
         if(selectTag.options[i].value === selected_month){
             selectTag.selectedIndex = i;

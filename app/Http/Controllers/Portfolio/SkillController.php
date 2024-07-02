@@ -24,14 +24,19 @@ class SkillController extends Controller
         $id = Auth::id();
 
         $currentMonth = now()->format('Y-m');
+        $oneMonthAgo = date('Y-m', strtotime('-1 month'));
+        $twoMonthAgo = date('Y-m', strtotime('-2 month'));
+
         $skills = learning_data::where('user_id', $id)
                     ->where('month', $currentMonth)
                     ->get();
 
         // 最新月を表示
         return view('portfolio.skill-top',[
-            'skills' =>$skills,
+            'skills' => $skills,
             'currentMonth' => $currentMonth,
+            'oneMonthAgo' => $oneMonthAgo,
+            'twoMonthAgo' => $twoMonthAgo,
         ]
 
         );
@@ -165,13 +170,21 @@ class SkillController extends Controller
 
         // dd($selected_month);
         $id = Auth::id();
+
+        $currentMonth = now()->format('Y-m');
+        $oneMonthAgo = date('Y-m', strtotime('-1 month'));
+        $twoMonthAgo = date('Y-m', strtotime('-2 month'));
+
         $skills = learning_data::where('user_id', $id)
                     ->where('month', $selected_month)
                     ->get();
 
-        return view('portfolio.skill-top',[
+        return view('portfolio.skill-added',[
             'skills' =>$skills,
-            'currentMonth' => $selected_month,
+            'currentMonth' => $currentMonth,
+            'oneMonthAgo' => $oneMonthAgo,
+            'twoMonthAgo' => $twoMonthAgo,
+            'selected_month' => $selected_month,
             ]
         );
     }

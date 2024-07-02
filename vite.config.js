@@ -17,6 +17,7 @@ export default defineConfig({
                 'resources/js/make_select.js',
                 'resources/js/modal.js',
                 'resources/js/chart.js',
+                'resources/js/added.js',
                 'resources/sass/app.scss',
             ],
             refresh: true,
