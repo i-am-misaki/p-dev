@@ -10,12 +10,12 @@
             <div class="flex flex-col justify-center  w-96 h-82 mb-80">
                 <div class="flex flex-col border-b mt-6 gap-2.5">
                     <x-portfolio.input_label for="name" :value="__('氏名')" />
-                    <input name='name' class="border-none outline-none"></input>
+                    <input name='name' value="{{ old('name') }}" class="border-none outline-none"></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('name')" class="mt-2" />
                 <div class="flex flex-col border-b mt-6 gap-2.5">
                     <x-portfolio.input_label for="email" :value="__('メールアドレス')" />
-                    <input name='email' type="email" class="border-none outline-none "></input>
+                    <input name='email' type="email" value="{{ old('email') }}" class="border-none outline-none "></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('email')" class="mt-2" />
                 <div class="flex flex-col border-b mt-6 gap-2.5">
@@ -23,7 +23,7 @@
                     <input type="password" name='password'class=" border-none outline-none "></input>
                 </div>
                 <x-portfolio.error :messages="$errors->get('password')" class="mt-2" />
-                
+
                 <div class="flex justify-center mt-12">
                     <x-portfolio.submit_button class="text-white">{{ __('登録する') }}</x-portfolio.submit_button>
                 </div>
