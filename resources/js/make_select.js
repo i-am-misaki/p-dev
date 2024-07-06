@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let twoM = document.getElementById('2');
     twoM.textContent = today.getMonth()-1 + '月';
 
-    // sessionStorage.setItem('selected_month', selected_month);
+    sessionStorage.setItem('selected_month', selected_month);
 
     // let current_ym = today.toLocaleDateString("ja-JP", {year: "numeric", month: one_month}).replaceAll('/', '-');
 
